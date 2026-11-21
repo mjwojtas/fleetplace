@@ -34,7 +34,7 @@ Zmiany względem v1:
 | 2 | Ile czasu chcesz poświęcić na jazdę? | Dorywczo, np. weekendy (~12 h tyg.) / Pół etatu (~20 h) / Pełen etat (~40 h) / Więcej (~50 h) | dostępne godziny H |
 | 3 | Ile chcesz zarobić minimum miesięcznie? *(po opłatach i paliwie, przed podatkiem)* | 1500 / 3000 / 5000 / 7000 zł / „Nie wiem, pokaż, ile zarobię” | cel minimalny X (tryb A); „Nie wiem” = tryb B |
 | 4 | Czym chcesz jeździć? | Własnym autem / Wynajętym autem tylko dla mnie / Autem na zmiany z innym kierowcą / Jeszcze nie wiem | twardy filtr: own / rental / split / brak filtra |
-| 5 | Co jest dla Ciebie ważne? *(maks. 2)* | Kilka aplikacji naraz / Bez kaucji / Szybkie wypłaty / Obsługa po ukraińsku lub angielsku / Brak opłat w tygodniu bez jazdy | „Kilka aplikacji” = twardy filtr; pozostałe = oznaczenia na kartach i rozstrzyganie remisów |
+| 5 | Co jest dla Ciebie ważne? *(dowolna liczba odpowiedzi, także żadna)* | Kilka aplikacji naraz / Bez kaucji / Szybkie wypłaty / Obsługa po ukraińsku lub angielsku / Brak opłat w tygodniu bez jazdy | „Kilka aplikacji” = twardy filtr; pozostałe = oznaczenia na kartach i rozstrzyganie remisów |
 
 **Krok 2. Podsumowanie (moment zaangażowania):** jedno zdanie, np. „Szukamy partnera dla kierowcy z Krakowa, który chce zarobić minimum 3000 zł miesięcznie, jeżdżąc około 20 godzin tygodniowo własnym autem.” Przycisk: „Pokaż moich partnerów”.
 
@@ -45,6 +45,7 @@ Zmiany względem v1:
   - porównujemy z H: „✅ Mieścisz się w H h” albo „⚠ Potrzebujesz N h, czyli o N − H h więcej”;
   - kolejność: najpierw oferty mieszczące się w H, potem rosnąco według potrzebnych godzin.
 - Ranking (tryb B, „Nie wiem”): zarobek miesięczny przy H godzinach, malejąco.
+- Przy każdej ofercie zawsze widać pieniądze: zarobek miesięczny przy H godzinach (w trybie A obok godzin potrzebnych do X) i zarobek na godzinę jazdy.
 - Przy każdej ofercie: wynik, rozbicie kosztów, oznaczenia priorytetów, link do źródła, data weryfikacji, przycisk „Przejdź do partnera”.
 - Panel „Twoje założenia” (można zmienić): obrót na godzinę, paliwo (% obrotu, LPG / benzyna), prowizja aplikacji, godziny H.
 - Gdy nic nie pasuje: podpowiedź, który filtr poluzować.

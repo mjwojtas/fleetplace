@@ -51,7 +51,7 @@ export const QUESTIONS = {
   targetNote: "(po opłatach i paliwie, przed podatkiem)",
   car: "Czym chcesz jeździć?",
   priorities: "Co jest dla Ciebie ważne?",
-  prioritiesNote: "(maks. 2)",
+  prioritiesNote: "(możesz zaznaczyć kilka albo żadnej)",
 } as const;
 
 export const CITY_OPTIONS: Array<{ value: City; label: string }> = [
@@ -89,8 +89,6 @@ export const PRIORITY_LABELS: Record<Priority, string> = {
   language: "Obsługa po ukraińsku lub angielsku",
   noIdleFee: "Brak opłat w tygodniu bez jazdy",
 };
-
-export const MAX_PRIORITIES = 2;
 
 // ---------------------------------------------------------------------------
 // Summary sentence (SPEC.md section 2, step 2)

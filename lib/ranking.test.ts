@@ -105,6 +105,40 @@ describe("✅ / ⚠ marks against available hours", () => {
   });
 });
 
+describe("money is always available on ranked offers", () => {
+  const offers = loaded([
+    offer("cheap", { weeklyFee: 10 }),
+    offer("expensive", { weeklyFee: 300 }),
+    offer("incomplete", { settlementType: "percent", percent: 0.1, feeBase: null }),
+  ]);
+
+  it("mode A gives monthly earnings at the driver's hours H for every calculable offer", () => {
+    const r = rankOffers(offers, partners, answers({ hours: 30, target: 3000 }), a);
+    for (const item of r.items.filter((i) => i.group === "ranked")) {
+      expect(item.earningsAtHours?.weeklyHours).toBe(30);
+      expect(item.earningsAtHours?.monthlyEarnings).not.toBeNull();
+      // An offer that fits in H earns at least the target at H hours (±1 PLN).
+      if (item.fitsHours) expect(item.earningsAtHours!.monthlyEarnings!).toBeGreaterThanOrEqual(3000 - 1);
+      else expect(item.earningsAtHours!.monthlyEarnings!).toBeLessThan(3000);
+    }
+    expect(r.items.find((i) => i.offer.id === "incomplete")?.earningsAtHours).toBeNull();
+  });
+
+  it("mode B uses the same result for money", () => {
+    const r = rankOffers(offers, partners, answers({ hours: 30, target: null }), a);
+    const cheap = r.items.find((i) => i.offer.id === "cheap")!;
+    expect(cheap.earningsAtHours).toBe(cheap.result);
+  });
+});
+
+describe("priorities without a limit", () => {
+  it("accepts all five priorities at once", () => {
+    const all = ["multiApp", "noDeposit", "fastPayout", "language", "noIdleFee"] as const;
+    const r = rankOffers(loaded([offer("x", {})]), partners, answers({ priorities: [...all] }), a);
+    expect(r.items[0].marks).toHaveLength(5);
+  });
+});
+
 describe("mode B ranking", () => {
   it("orders by monthly earnings at H hours, descending", () => {
     const offers = loaded([

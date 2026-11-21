@@ -188,7 +188,13 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
               <ol className="flex flex-col gap-4">
                 {ranked.map((item, index) => (
                   <li key={item.offer.id}>
-                    <OfferCard item={item} mode={ranking.mode} position={item.group === "ranked" ? index + 1 : null} hours={answers.hours} />
+                    <OfferCard
+                      item={item}
+                      mode={ranking.mode}
+                      position={item.group === "ranked" ? index + 1 : null}
+                      hours={answers.hours}
+                      target={answers.target}
+                    />
                   </li>
                 ))}
               </ol>
@@ -199,7 +205,7 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
                   <ul className="flex flex-col gap-4">
                     {incomplete.map((item) => (
                       <li key={item.offer.id}>
-                        <OfferCard item={item} mode={ranking.mode} position={null} hours={answers.hours} />
+                        <OfferCard item={item} mode={ranking.mode} position={null} hours={answers.hours} target={answers.target} />
                       </li>
                     ))}
                   </ul>
@@ -320,14 +326,19 @@ function OfferCard({
   mode,
   position,
   hours,
+  target,
 }: {
   item: RankedOffer;
   mode: "A" | "B";
   position: number | null;
   hours: number;
+  target: number | null;
 }) {
   const { offer, partner, result, group } = item;
-  const w = result.weekly;
+  // Money is always shown at the driver's hours H (in mode A as well).
+  const money = item.earningsAtHours;
+  const w = money?.weekly ?? null;
+  const perHour = w && hours > 0 ? w.earnings / hours : null;
   const href = partner?.www ?? offer.sourceUrl;
 
   return (
@@ -343,22 +354,27 @@ function OfferCard({
             Aplikacje: {offer.appsIncluded.map((a) => APP_NAMES[a] ?? a).join(", ")}
           </p>
         </div>
-        {group === "ranked" && (
-          <div className="shrink-0 text-right">
-            {mode === "A" && result.weeklyHours !== null ? (
-              <>
-                <p className="text-2xl font-semibold tabular-nums">{formatHours(result.weeklyHours)} h</p>
-                <p className="text-xs text-zinc-500">tygodniowo</p>
-              </>
-            ) : result.monthlyEarnings !== null ? (
-              <>
-                <p className="text-2xl font-semibold tabular-nums">{formatInt(result.monthlyEarnings)} zł</p>
-                <p className="text-xs text-zinc-500">miesięcznie</p>
-              </>
-            ) : null}
-          </div>
-        )}
       </div>
+
+      {group === "ranked" && money?.monthlyEarnings != null && (
+        <div className="rounded-xl bg-zinc-50 px-4 py-3 dark:bg-zinc-800/60">
+          <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+            Zarobisz miesięcznie (przed podatkiem)
+          </p>
+          <p
+            className={[
+              "text-3xl font-bold tabular-nums",
+              money.monthlyEarnings < 0 ? "text-red-700 dark:text-red-400" : "text-emerald-800 dark:text-emerald-300",
+            ].join(" ")}
+          >
+            {formatInt(money.monthlyEarnings)} zł
+          </p>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            przy {formatHours(hours)} h tygodniowo
+            {perHour !== null && perHour > 0 && <> · ok. {formatInt(perHour)} zł za godzinę jazdy</>}
+          </p>
+        </div>
+      )}
 
       {mode === "A" && item.fitsHours !== null && (
         <p
@@ -370,13 +386,13 @@ function OfferCard({
           ].join(" ")}
         >
           {item.fitsHours
-            ? `✅ Mieścisz się w ${formatHours(hours)} h`
-            : `⚠ Potrzebujesz ${formatHours(result.weeklyHours!)} h, czyli o ${formatHours(item.extraHours!)} h więcej`}
+            ? `✅ Cel ${formatInt(target ?? 0)} zł osiągniesz w ${formatHours(result.weeklyHours!)} h tygodniowo. Mieścisz się w ${formatHours(hours)} h.`
+            : `⚠ Na cel ${formatInt(target ?? 0)} zł potrzebujesz ${formatHours(result.weeklyHours!)} h tygodniowo, czyli o ${formatHours(item.extraHours!)} h więcej.`}
         </p>
       )}
 
       {result.flags.unrealistic && mode === "A" && <Warning>{COPY.unrealistic}</Warning>}
-      {result.flags.loss && <Warning>{COPY.loss}</Warning>}
+      {group === "ranked" && money?.flags.loss && <Warning>{COPY.loss}</Warning>}
       {group === "neverProfitable" && <Warning>{COPY.neverProfitable}</Warning>}
       {group === "incomplete" && <Warning>{missingFieldsText(result.missingFields)}</Warning>}
 
@@ -401,11 +417,13 @@ function OfferCard({
 
       {w && (
         <details className="text-sm">
-          <summary className="cursor-pointer font-medium text-zinc-700 dark:text-zinc-300">Rozbicie kosztów (tygodniowo)</summary>
+          <summary className="cursor-pointer font-medium text-zinc-700 dark:text-zinc-300">
+            Rozbicie kosztów (tygodniowo, przy {formatHours(hours)} h)
+          </summary>
           <dl className="mt-2 grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 tabular-nums">
             <Row label="Obrót z przejazdów" value={w.turnover} />
             <Row label="Prowizja aplikacji" value={-w.appCommission} />
-            <Row label={`VAT od przejazdów${result.flags.vatAssumed ? " (założenie 8%)" : ""}`} value={-w.rideVat} />
+            <Row label={`VAT od przejazdów${money?.flags.vatAssumed ? " (założenie 8%)" : ""}`} value={-w.rideVat} />
             {w.partnerPercentFee > 0 && <Row label="Opłata procentowa partnera" value={-w.partnerPercentFee} />}
             {w.partnerFixedFee > 0 && <Row label="Opłata stała partnera" value={-w.partnerFixedFee} />}
             {w.partnerSplitShare > 0 && <Row label="Udział partnera" value={-w.partnerSplitShare} />}
@@ -415,8 +433,14 @@ function OfferCard({
             <dd className="border-t border-zinc-200 pt-1 text-right font-semibold dark:border-zinc-700">
               {formatInt(w.earnings)} zł
             </dd>
+            {money?.monthlyEarnings != null && (
+              <>
+                <dt className="font-semibold">Twój zarobek miesięcznie</dt>
+                <dd className="text-right font-semibold">{formatInt(money.monthlyEarnings)} zł</dd>
+              </>
+            )}
           </dl>
-          {result.flags.vatAssumed && <p className="mt-2 text-xs text-zinc-500">{COPY.vatAssumed}</p>}
+          {money?.flags.vatAssumed && <p className="mt-2 text-xs text-zinc-500">{COPY.vatAssumed}</p>}
         </details>
       )}
 

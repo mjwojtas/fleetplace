@@ -7,7 +7,6 @@ import {
   CITY_OPTIONS,
   COPY,
   HOURS_OPTIONS,
-  MAX_PRIORITIES,
   PRIORITY_LABELS,
   QUESTIONS,
   summarySentence,
@@ -159,12 +158,10 @@ export function DriverFlow({ offers, partners, assumptions, dataDate }: DriverFl
         <Question title={QUESTIONS.priorities} note={QUESTIONS.prioritiesNote}>
           {PRIORITIES.map((p) => {
             const selected = draft.priorities.includes(p);
-            const disabled = !selected && draft.priorities.length >= MAX_PRIORITIES;
             return (
               <Tile
                 key={p}
                 selected={selected}
-                disabled={disabled}
                 multi
                 onClick={() =>
                   setDraft((d) => ({

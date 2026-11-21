@@ -30,7 +30,7 @@ export interface DriverAnswers {
   /** Minimum monthly earnings X; null = "I don't know" (mode B). */
   target: number | null;
   car: CarChoice;
-  /** At most 2. "multiApp" is a hard filter, the rest are marks and tie-breakers. */
+  /** Any number. "multiApp" is a hard filter, the rest are marks and tie-breakers. */
   priorities: Priority[];
 }
 
@@ -52,6 +52,11 @@ export interface RankedOffer {
   fitsHours: boolean | null;
   /** Mode A only: hours above H (0 when it fits). */
   extraHours: number | null;
+  /**
+   * Money at the driver's available hours H (mode B calculation), shown on every card
+   * so the driver always sees earnings in PLN. Null when the offer cannot be calculated.
+   */
+  earningsAtHours: CalcResult | null;
   marks: PriorityMark[];
 }
 
@@ -157,6 +162,12 @@ export function rankOffers(
       fitsHours = needed <= answers.hours;
       extraHours = fitsHours ? 0 : Math.round((needed - answers.hours) * 10) / 10;
     }
+    const earningsAtHours =
+      group === "incomplete" || group === "needsHourlyInput"
+        ? null
+        : mode === "B"
+          ? result
+          : earningsForHours(offer, assumptions, answers.hours);
     return {
       offer,
       partner: partners.find((p) => p.id === offer.partnerId),
@@ -164,6 +175,7 @@ export function rankOffers(
       group,
       fitsHours,
       extraHours,
+      earningsAtHours,
       marks: answers.priorities.map((priority) => ({ priority, status: priorityStatus(offer, priority) })),
     };
   });
