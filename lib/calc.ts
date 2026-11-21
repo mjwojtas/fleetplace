@@ -43,13 +43,20 @@ export type CarType = (typeof CAR_TYPES)[number];
 
 export type PayoutFrequency = "daily" | "weekly" | "biweekly" | "monthly";
 
+/** Period in which the source quotes the fixed fee. */
+export type FeePeriod = "week" | "month";
+
 export interface Offer {
   id: string;
   partnerId: string;
   city: City;
   settlementType: SettlementType;
-  /** opłata_stała_tyg: fixed weekly fee (PLN). */
+  /** opłata_stała_tyg: fixed weekly fee (PLN), used in calculations. */
   weeklyFee?: number | null;
+  /** Fixed fee exactly as quoted by the source (PLN per `feeQuotedPeriod`), for display. */
+  feeQuotedAmount?: number | null;
+  /** Period of `feeQuotedAmount`: a monthly fee is converted to weekly as amount × 12 ÷ 52. */
+  feeQuotedPeriod?: FeePeriod | null;
   /** procent: partner percentage (fraction). */
   percent?: number | null;
   /** podstawa_naliczania */
@@ -163,6 +170,11 @@ export interface CalcResult {
   missingFields: string[];
 }
 
+/** Converts a fee quoted per week or per month into a weekly amount (month: × 12 ÷ 52). */
+export function weeklyFromQuoted(amount: number, period: FeePeriod): number {
+  return period === "month" ? amount / WEEKS_PER_MONTH : amount;
+}
+
 // ---------------------------------------------------------------------------
 // Validation (SPEC.md section 9, item 8)
 // ---------------------------------------------------------------------------
@@ -221,6 +233,26 @@ export function validateOffer(offer: Offer): string[] {
   amount("Opłata stała", offer.weeklyFee);
   amount("Wynajem", offer.weeklyRent);
   amount("Kaucja", offer.deposit);
+  amount("Opłata ze źródła", offer.feeQuotedAmount);
+
+  if (offer.feeQuotedPeriod != null && offer.feeQuotedPeriod !== "week" && offer.feeQuotedPeriod !== "month") {
+    errors.push(`Nieznany okres opłaty: ${offer.feeQuotedPeriod}`);
+  }
+  if (typeof offer.feeQuotedAmount === "number" && offer.feeQuotedPeriod == null) {
+    errors.push("Podano kwotę opłaty ze źródła bez okresu (tydzień albo miesiąc)");
+  }
+  if (
+    typeof offer.weeklyFee === "number" &&
+    typeof offer.feeQuotedAmount === "number" &&
+    (offer.feeQuotedPeriod === "week" || offer.feeQuotedPeriod === "month")
+  ) {
+    const expected = weeklyFromQuoted(offer.feeQuotedAmount, offer.feeQuotedPeriod);
+    if (Math.abs(expected - offer.weeklyFee) > 0.01) {
+      errors.push(
+        `Opłata tygodniowa (${offer.weeklyFee}) nie zgadza się z kwotą ze źródła (${offer.feeQuotedAmount} zł/${offer.feeQuotedPeriod === "month" ? "mies." : "tydz."})`,
+      );
+    }
+  }
 
   if (!Array.isArray(offer.appsIncluded) || offer.appsIncluded.length === 0) {
     errors.push("Brak listy aplikacji objętych ofertą");

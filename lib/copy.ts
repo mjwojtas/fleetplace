@@ -4,7 +4,7 @@
  */
 import type { City } from "./calc";
 import type { CarChoice } from "./data";
-import type { DriverAnswers, Priority, Relaxation } from "./ranking";
+import type { DriverAnswers, Priority, RankingResult, Relaxation } from "./ranking";
 
 export const COPY = {
   intro: {
@@ -171,7 +171,7 @@ export function formatDate(iso: string): string {
 }
 
 export const MISSING_FIELD_LABELS: Record<string, string> = {
-  weeklyFee: "opłaty stałej",
+  weeklyFee: "kwoty opłaty stałej",
   percent: "procentu dla partnera",
   feeBase: "podstawy naliczania procentu",
   driverShare: "udziału kierowcy",
@@ -179,5 +179,42 @@ export const MISSING_FIELD_LABELS: Record<string, string> = {
 };
 
 export function missingFieldsText(fields: string[]): string {
-  return `Brak informacji o: ${fields.map((f) => MISSING_FIELD_LABELS[f] ?? f).join(", ")}.`;
+  return `Brakuje: ${fields.map((f) => MISSING_FIELD_LABELS[f] ?? f).join(", ")}.`;
+}
+
+// ---------------------------------------------------------------------------
+// Verdict sentence at the top of the results (SPEC.md section 2a)
+// ---------------------------------------------------------------------------
+
+/** "1 oferta da", "3 oferty dadzą", "5 ofert da" (nominative with the verb). */
+function offersWillGive(n: number): string {
+  if (n === 1) return "1 oferta da";
+  const lastTwo = n % 100;
+  const last = n % 10;
+  if (last >= 2 && last <= 4 && (lastTwo < 12 || lastTwo > 14)) return `${n} oferty dadzą`;
+  return `${n} ofert da`;
+}
+
+/** One-sentence verdict for the ranking. Null when no offer could be calculated. */
+export function verdictSentence(ranking: RankingResult, answers: DriverAnswers): string | null {
+  const ranked = ranking.items.filter((i) => i.group === "ranked" && i.earningsAtHours?.monthlyEarnings != null);
+  if (ranked.length === 0) return null;
+  const name = (i: (typeof ranked)[number]) => i.partner?.name ?? i.offer.partnerId;
+  const H = formatHours(answers.hours);
+  const best = ranked[0];
+  const bestAmount = formatInt(best.earningsAtHours!.monthlyEarnings!);
+
+  if (ranking.mode === "B" || answers.target === null) {
+    return `Najwięcej zarobisz u ${name(best)}: ${bestAmount} zł miesięcznie przy ${H} h.`;
+  }
+
+  const X = formatInt(answers.target);
+  const fitting = ranked.filter((i) => i.fitsHours);
+  if (fitting.length > 0) {
+    return `${offersWillGive(fitting.length)} Ci minimum ${X} zł przy ${H} h tygodniowo. Najlepsza: ${name(best)}, ${bestAmount} zł.`;
+  }
+  const closest = ranked
+    .filter((i) => i.extraHours !== null)
+    .reduce((a, b) => (b.extraHours! < a.extraHours! ? b : a));
+  return `Przy ${H} h tygodniowo żadna oferta nie da ${X} zł. Najbliżej: ${name(closest)}, potrzebujesz o ${formatHours(closest.extraHours!)} h więcej.`;
 }

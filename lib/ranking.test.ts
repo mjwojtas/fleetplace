@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Assumptions, Offer } from "./calc";
-import { offersCount, relaxationHint, summarySentence } from "./copy";
+import { missingFieldsText, offersCount, relaxationHint, summarySentence, verdictSentence } from "./copy";
 import { getAssumptions, loadOffers, seedData, type LoadedOffer, type Partner } from "./data";
 import { priorityStatus, rankOffers, suggestRelaxations, type DriverAnswers } from "./ranking";
 
@@ -256,5 +256,51 @@ describe("seed data: Kraków, half-time, 3000 PLN, own car, several apps", () =>
     const groups = r.items.map((i) => i.group);
     expect(groups.indexOf("incomplete")).toBeGreaterThan(groups.lastIndexOf("ranked"));
     expect(seedData.offers.length).toBe(26);
+  });
+});
+
+describe("verdict sentence", () => {
+  const offers = loaded([offer("cheap", { weeklyFee: 10 }), offer("expensive", { weeklyFee: 300 })]);
+  const named: Partner[] = [{ ...partners[0], name: "Test" }];
+
+  it("mode A, at least one offer fits in H", () => {
+    const ans = answers({ hours: 40, target: 3000 });
+    const r = rankOffers(offers, named, ans, a);
+    const best = Math.round(r.items[0].earningsAtHours!.monthlyEarnings!);
+    expect(verdictSentence(r, ans)).toBe(`2 oferty dadzą Ci minimum 3000 zł przy 40 h tygodniowo. Najlepsza: Test, ${best} zł.`);
+  });
+
+  it("mode A, one offer fits: singular form", () => {
+    const ans = answers({ hours: 30, target: 3000 });
+    const r = rankOffers(offers, named, ans, a);
+    expect(r.items.filter((i) => i.fitsHours)).toHaveLength(1);
+    expect(verdictSentence(r, ans)).toMatch(/^1 oferta da Ci minimum 3000 zł przy 30 h tygodniowo\. Najlepsza: Test, \d+ zł\.$/);
+  });
+
+  it("mode A, nothing fits: names the offer with the fewest missing hours", () => {
+    const ans = answers({ hours: 12, target: 3000 });
+    const r = rankOffers(offers, named, ans, a);
+    const closest = r.items.find((i) => i.offer.id === "cheap")!;
+    const extra = closest.extraHours!.toLocaleString("pl-PL", { maximumFractionDigits: 1 });
+    expect(verdictSentence(r, ans)).toBe(
+      `Przy 12 h tygodniowo żadna oferta nie da 3000 zł. Najbliżej: Test, potrzebujesz o ${extra} h więcej.`,
+    );
+  });
+
+  it("mode B", () => {
+    const ans = answers({ hours: 20, target: null });
+    const r = rankOffers(offers, named, ans, a);
+    const best = Math.round(r.items[0].earningsAtHours!.monthlyEarnings!).toLocaleString("pl-PL");
+    expect(verdictSentence(r, ans)).toBe(`Najwięcej zarobisz u Test: ${best} zł miesięcznie przy 20 h.`);
+  });
+
+  it("no sentence when nothing can be calculated", () => {
+    const ans = answers({});
+    const r = rankOffers(loaded([offer("x", { weeklyFee: null })]), named, ans, a);
+    expect(verdictSentence(r, ans)).toBeNull();
+  });
+
+  it("uses the 'Brakuje:' wording for incomplete offers", () => {
+    expect(missingFieldsText(["weeklyFee"])).toBe("Brakuje: kwoty opłaty stałej.");
   });
 });

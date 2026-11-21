@@ -290,6 +290,19 @@ describe("validateOffer", () => {
     expect(validateOffer(offer({ verifiedAt: "2026-02-30" }))).toHaveLength(1);
   });
 
+  it("accepts a monthly fee that matches the weekly amount", () => {
+    expect(validateOffer(offer({ weeklyFee: 11.54, feeQuotedAmount: 50, feeQuotedPeriod: "month" }))).toEqual([]);
+    expect(validateOffer(offer({ weeklyFee: 60, feeQuotedAmount: 60, feeQuotedPeriod: "week" }))).toEqual([]);
+  });
+
+  it("rejects a weekly amount that does not match the quoted fee", () => {
+    expect(validateOffer(offer({ weeklyFee: 50, feeQuotedAmount: 50, feeQuotedPeriod: "month" }))).toHaveLength(1);
+  });
+
+  it("rejects a quoted fee without a period", () => {
+    expect(validateOffer(offer({ weeklyFee: 50, feeQuotedAmount: 50, feeQuotedPeriod: null }))).toHaveLength(1);
+  });
+
   it("rejects an empty or unknown app list", () => {
     expect(validateOffer(offer({ appsIncluded: [] }))).toHaveLength(1);
     expect(validateOffer(offer({ appsIncluded: ["taxi" as never] }))).toHaveLength(1);

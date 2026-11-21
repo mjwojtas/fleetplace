@@ -13,6 +13,7 @@ import {
   PRIORITY_LABELS,
   relaxationHint,
   summarySentence,
+  verdictSentence,
 } from "@/lib/copy";
 import type { LoadedOffer, Partner } from "@/lib/data";
 import { rankOffers, suggestRelaxations, type DriverAnswers, type RankedOffer } from "@/lib/ranking";
@@ -69,6 +70,7 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
     [offers, answers, ranking.matchCount],
   );
 
+  const verdict = verdictSentence(ranking, answers);
   const ranked = ranking.items.filter((i) => i.group !== "incomplete");
   const incomplete = ranking.items.filter((i) => i.group === "incomplete");
   const needsHourly = effective.hourlyTurnover === null;
@@ -80,21 +82,23 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
   };
 
   return (
-    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-4 py-6 sm:py-10">
-      <header className="flex flex-col gap-3">
-        <p className="text-base text-zinc-600 dark:text-zinc-400">{summarySentence(answers)}</p>
-        <button
-          type="button"
-          onClick={onRestart}
-          className="self-start text-sm font-medium text-emerald-700 underline underline-offset-4 dark:text-emerald-400"
-        >
-          {COPY.changeAnswers}
-        </button>
+    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-4 px-4 py-4 sm:gap-6 sm:py-10">
+      <header>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
+          {summarySentence(answers)}{" "}
+          <button
+            type="button"
+            onClick={onRestart}
+            className="font-medium text-emerald-700 underline underline-offset-4 dark:text-emerald-400"
+          >
+            {COPY.changeAnswers}
+          </button>
+        </p>
       </header>
 
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+      <div className="flex flex-col gap-4 sm:gap-6 lg:flex-row lg:items-start">
         {/* Assumptions panel: first on mobile, sidebar on desktop */}
-        <aside className="rounded-2xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900 lg:sticky lg:top-14 lg:w-80 lg:shrink-0">
+        <aside className="rounded-2xl border border-zinc-200 bg-white px-4 py-3 dark:border-zinc-800 dark:bg-zinc-900 lg:sticky lg:top-14 lg:w-80 lg:shrink-0">
           <button
             type="button"
             aria-expanded={panelOpen}
@@ -102,7 +106,7 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
             onClick={() => setPanelOpen((o) => !o)}
             className="flex w-full items-center justify-between gap-3 text-left lg:pointer-events-none"
           >
-            <span className="text-lg font-semibold">{COPY.assumptionsTitle}</span>
+            <span className="text-base font-semibold lg:text-lg">{COPY.assumptionsTitle}</span>
             <span className="text-sm font-medium text-emerald-700 dark:text-emerald-400 lg:hidden">
               {panelOpen ? "Zwiń" : "Zmień"}
             </span>
@@ -162,9 +166,9 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
           </div>
         </aside>
 
-        <section className="flex min-w-0 flex-1 flex-col gap-4" aria-label="Ranking ofert">
+        <section className="flex min-w-0 flex-1 flex-col gap-3 sm:gap-4" aria-label="Ranking ofert">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <h1 className="text-2xl font-semibold">{COPY.resultHeading}</h1>
+            <h1 className="text-xl font-semibold sm:text-2xl">{COPY.resultHeading}</h1>
             <details className="text-sm">
               <summary className="cursor-pointer font-medium text-emerald-700 underline underline-offset-4 dark:text-emerald-400">
                 {COPY.whatDoesItMean}
@@ -174,7 +178,11 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
               </p>
             </details>
           </div>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">{COPY.rankingRules}</p>
+          {verdict && (
+            <p className="rounded-xl bg-emerald-50 px-4 py-3 text-base font-medium leading-snug text-emerald-950 dark:bg-emerald-950 dark:text-emerald-50">
+              {verdict}
+            </p>
+          )}
 
           {ranking.matchCount === 0 ? (
             <EmptyState suggestions={suggestions} onApply={onAnswersChange} />
@@ -214,9 +222,10 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
             </>
           )}
 
-          <p className="border-t border-zinc-200 pt-4 text-xs text-zinc-500 dark:border-zinc-800">
-            {COPY.footnote(formatDate(dataDate))}
-          </p>
+          <div className="flex flex-col gap-2 border-t border-zinc-200 pt-4 dark:border-zinc-800">
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">{COPY.rankingRules}</p>
+            <p className="text-xs text-zinc-500">{COPY.footnote(formatDate(dataDate))}</p>
+          </div>
         </section>
       </div>
     </main>
@@ -306,7 +315,7 @@ function offerTerms(offer: Offer): string {
     parts.push(`Podział ${s}/${100 - s} (Ty/partner)`);
   }
   if (offer.settlementType === "fixed" || offer.settlementType === "mixed") {
-    parts.push(offer.weeklyFee != null ? `Opłata ${formatMoney(offer.weeklyFee)} zł/tydz.` : "Opłata stała (kwota nieznana)");
+    parts.push(feeText(offer));
   }
   if ((offer.settlementType === "percent" || offer.settlementType === "mixed") && offer.percent != null) {
     parts.push(`${pctText(offer.percent)}${base}`);
@@ -316,6 +325,15 @@ function offerTerms(offer: Offer): string {
   }
   if (offer.fuelIncluded) parts.push("paliwo w cenie");
   return parts.join(" + ") || "Warunki rozliczenia";
+}
+
+/** Fixed fee as quoted by the source: "50 zł/mies. (≈ 11,54 zł/tydz.)" or "60 zł/tydz.". */
+function feeText(offer: Offer): string {
+  if (offer.weeklyFee == null) return "Opłata stała (kwota nieznana)";
+  if (offer.feeQuotedPeriod === "month" && offer.feeQuotedAmount != null) {
+    return `Opłata ${formatMoney(offer.feeQuotedAmount)} zł/mies. (≈ ${formatMoney(offer.weeklyFee)} zł/tydz.)`;
+  }
+  return `Opłata ${formatMoney(offer.weeklyFee)} zł/tydz.`;
 }
 
 const MARK_ICON = { yes: "✓", no: "✗", unknown: "?" } as const;

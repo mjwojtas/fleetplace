@@ -48,6 +48,7 @@ Zmiany względem v1:
 - Przy każdej ofercie: wynik, rozbicie kosztów, oznaczenia priorytetów, link do źródła, data weryfikacji, przycisk „Przejdź do partnera”.
 - Panel „Twoje założenia” (można zmienić): obrót na godzinę, paliwo (% obrotu, LPG / benzyna), prowizja aplikacji, godziny H.
 - Gdy nic nie pasuje: podpowiedź, który filtr poluzować.
+- Werdykt (jedno zdanie, rozdz. 2a) na górze wyniku; opis „Jak układamy ranking” pod listą ofert. Na ekranie 390×844 pierwsza oferta jest widoczna bez przewijania.
 
 **Pomiar:** anonimowe zdarzenia dla każdego pytania (ile osób przechodzi dalej i ile kończy wywiad).
 
@@ -70,13 +71,17 @@ Zmiany względem v1:
 | Strata (tryb B, zarobek < 0) | „Przy tej liczbie godzin koszty (np. wynajem) są wyższe niż to, co zarobisz. Zwiększ liczbę godzin albo wybierz ofertę bez stałych opłat.” |
 | Etykieta promowania | „Promowane. Partner zapłacił za wyróżnienie. Nie zmienia to rankingu poniżej.” |
 | Ranking (pod wynikiem) | „Jak układamy ranking: według Twojego zarobku miesięcznego przy podanej liczbie godzin, wyłącznie na podstawie warunków ofert. Płatności partnerów nie wpływają na kolejność.” |
+| Werdykt, tryb A, co najmniej jedna oferta mieści się w H | „[N] ofert da Ci minimum [X] zł przy [H] h tygodniowo. Najlepsza: [partner], [kwota] zł.” (odmiana: „1 oferta da”, „2–4 oferty dadzą”, „5 ofert da”) |
+| Werdykt, tryb A, żadna oferta nie mieści się w H | „Przy [H] h tygodniowo żadna oferta nie da [X] zł. Najbliżej: [partner], potrzebujesz o [N] h więcej.” („Najbliżej” = najmniej brakujących godzin) |
+| Werdykt, tryb B | „Najwięcej zarobisz u [partner]: [kwota] zł miesięcznie przy [H] h.” |
+| Opłata miesięczna w źródle | „[kwota] zł/mies. (≈ [kwota tygodniowa] zł/tydz.)”, np. „50 zł/mies. (≈ 11,54 zł/tydz.)” |
 | Wprowadzenie, tytuł *(propozycja, krok 3)* | „Znajdź partnera flotowego, który się opłaca” |
 | Wprowadzenie, tekst *(propozycja)* | „Odpowiedz na 5 krótkich pytań. Porównamy oferty partnerów w Twoim mieście i pokażemy, ile zarobisz albo ile musisz jeździć. Nie pytamy o imię, telefon ani e-mail.” |
 | Podsumowanie, tryb B *(propozycja)* | „Szukamy partnera dla kierowcy z [miasta], który chce sprawdzić, ile zarobi, jeżdżąc około [H] godzin tygodniowo [autem].” |
 | Brak obrotu na godzinę *(propozycja)* | „Nie mamy publicznego źródła obrotu na godzinę dla tego miasta. Wpisz w „Twoich założeniach”, ile średnio płacą pasażerowie za godzinę jazdy, a policzymy wynik.” |
 | VAT założony *(propozycja)* | „Oferta nie podaje VAT od przejazdów, przyjęliśmy 8%.” |
 | Nigdy się nie opłaca *(propozycja)* | „Przy tych założeniach ta oferta się nie opłaca: koszty rosną szybciej niż zarobek.” |
-| Oferty niepełne *(propozycja)* | Nagłówek „Oferty z niepełnymi danymi”, tekst „Nie liczymy wyniku, bo źródło nie podaje wszystkich warunków.”, przy ofercie „Brak informacji o: [pola].” |
+| Oferty niepełne *(propozycja)* | Nagłówek „Oferty z niepełnymi danymi”, tekst „Nie liczymy wyniku, bo źródło nie podaje wszystkich warunków.”, przy ofercie „Brakuje: [pola].”, np. „Brakuje: kwoty opłaty stałej.” |
 | Pusty wynik *(propozycja)* | „Żadna oferta nie pasuje do Twoich odpowiedzi.” + podpowiedź, np. „Odznacz „Kilka aplikacji naraz”: znajdziesz N ofert.” albo „Zmień odpowiedź „Czym chcesz jeździć?” na „Jeszcze nie wiem”: znajdziesz N ofert.” |
 | Pusty wynik, brak podpowiedzi *(propozycja)* | „W tym mieście nie mamy jeszcze ofert spełniających te warunki. Spróbuj innego miasta albo wróć wkrótce.” |
 
@@ -139,7 +144,7 @@ Oznaczenia:
 
 ## 5. Model danych (wersja robocza)
 - **partners:** id, nazwa, miasta[], aplikacje[], www, status (szkic / zweryfikowany / archiwalny)
-- **offers:** partner_id, miasto, typ_rozliczenia (stała / procent / mieszany / podział), opłata_stała_tyg, procent, podstawa_naliczania (obrót / po prowizji aplikacji), vat_od (netto / brutto), udział_kierowcy, wynajem_tyg, typ_auta, paliwo_w_cenie, kaucja, częstotliwość_wypłat, języki[], vat_od_przejazdów (ułamek obrotu lub brak), aplikacje_w_cenie[], brak_opłaty_bez_jazdy (tak/nie/brak), źródło_url, data_weryfikacji, uwagi
+- **offers:** partner_id, miasto, typ_rozliczenia (stała / procent / mieszany / podział), opłata_stała_tyg, opłata_ze_źródła (kwota + okres: tydzień / miesiąc), procent, podstawa_naliczania (obrót / po prowizji aplikacji), vat_od (netto / brutto), udział_kierowcy, wynajem_tyg, typ_auta, paliwo_w_cenie, kaucja, częstotliwość_wypłat, języki[], vat_od_przejazdów (ułamek obrotu lub brak), aplikacje_w_cenie[], brak_opłaty_bez_jazdy (tak/nie/brak), źródło_url, data_weryfikacji, uwagi
 - **assumptions:** miasto, obrót_na_godz_domyślny (może być pusty — wtedy kierowca wpisuje sam), paliwo_proc_domyślne, prowizja_aplikacji, vat_od_przejazdów_domyślny, źródło_url, data
 - **subscriptions:** partner_id, plan (free / pro), status, stripe_customer_id, stripe_subscription_id (tryb testowy)
 - **promotions:** partner_id, offer_id, miasto, od, do, stripe_payment_id (tryb testowy), status
