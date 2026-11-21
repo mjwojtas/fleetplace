@@ -165,6 +165,7 @@ Oznaczenia:
 4. Próg „nierealne” (propozycja: 60 godzin tygodniowo)
 5. Licencja (propozycja: MIT)
 6. ~~Sposób pracy~~ zatwierdzony: hybryda, zob. rozdz. 11
+7. Uwzględnianie VAT w opłatach partnera (pole `vat_od`). Do czasu decyzji obliczenia nie doliczają VAT.
 
 ## 10. Ryzyka
 | Ryzyko | Skutek | Jak ograniczamy |
