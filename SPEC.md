@@ -26,30 +26,33 @@ Zmiany względem v1:
   - wyłącznie dane z publicznych źródeł, żadnych wewnętrznych danych firm przewozowych;
   - na każdej stronie stały baner: „Wersja demonstracyjna. Płatności są testowe.”
 
-## 2. Ścieżka kierowcy
-**Krok 0. Pytanie na wejściu: „Z czym przychodzisz?”**
-| Tryb | Kierowca podaje | Wynik | Ranking według |
+## 2. Ścieżka kierowcy (zatwierdzona 22.11.2026)
+**Krok 1. Wywiad: 5 pytań, jedno na ekran, odpowiedzi jako kafelki, pasek postępu 1/5, przycisk „Wstecz”, bez danych osobowych**
+| # | Pytanie | Odpowiedzi | Rola |
 |---|---|---|---|
-| A. Cel zarobku | „Chcę zarobić X zł miesięcznie” | ile godzin tygodniowo musi jeździć u każdego partnera | najmniej godzin |
-| B. Dostępny czas | „Mam X godzin tygodniowo” | ile zarobi miesięcznie u każdego partnera | najwyższa kwota |
+| 1 | Gdzie chcesz jeździć? | Warszawa / Kraków / Trójmiasto | twardy filtr miasta + domyślne założenia |
+| 2 | Ile czasu chcesz poświęcić na jazdę? | Dorywczo, np. weekendy (~12 h tyg.) / Pół etatu (~20 h) / Pełen etat (~40 h) / Więcej (~50 h) | dostępne godziny H |
+| 3 | Ile chcesz zarobić minimum miesięcznie? *(po opłatach i paliwie, przed podatkiem)* | 1500 / 3000 / 5000 / 7000 zł / „Nie wiem, pokaż, ile zarobię” | cel minimalny X (tryb A); „Nie wiem” = tryb B |
+| 4 | Czym chcesz jeździć? | Własnym autem / Wynajętym autem tylko dla mnie / Autem na zmiany z innym kierowcą / Jeszcze nie wiem | twardy filtr: own / rental / split / brak filtra |
+| 5 | Co jest dla Ciebie ważne? *(maks. 2)* | Kilka aplikacji naraz / Bez kaucji / Szybkie wypłaty / Obsługa po ukraińsku lub angielsku / Brak opłat w tygodniu bez jazdy | „Kilka aplikacji” = twardy filtr; pozostałe = oznaczenia na kartach i rozstrzyganie remisów |
 
-**Krok 1. Wspólne pytania**
-| Wymiar | Warianty | Rola |
-|---|---|---|
-| Miasto | Warszawa / Kraków / Trójmiasto | twardy filtr |
-| Auto | własne / wynajem / bez znaczenia | twardy filtr + koszt wynajmu |
-| Aplikacje | tylko Bolt / Bolt i inne | twardy filtr |
-| Obrót na godzinę | domyślny, kierowca może zmienić | podstawa obliczeń |
-| Paliwo (% obrotu) | domyślny, kierowca może zmienić | koszt, jeśli paliwo nie jest wliczone w ofertę |
-| Priorytety (opcjonalnie) | wypłaty codzienne, brak kaucji, język UA/EN | rozstrzyga remisy |
+**Krok 2. Podsumowanie (moment zaangażowania):** jedno zdanie, np. „Szukamy partnera dla kierowcy z Krakowa, który chce zarobić minimum 3000 zł miesięcznie, jeżdżąc około 20 godzin tygodniowo własnym autem.” Przycisk: „Pokaż moich partnerów”.
 
-**Krok 2. Wynik:**
+**Krok 3. Wynik:**
 - Blok „Promowane” (najwyżej 2 oferty pasujące do filtrów), wyraźnie oznaczony.
-- Pod nim ranking ofert, którego kolejności płatność nie zmienia.
-- Przy każdej ofercie: wynik (godziny albo kwota), rozbicie kosztów, link do źródła, data weryfikacji, przycisk „Przejdź do partnera”.
+- Ranking (tryb A, gdy podano X):
+  - dla każdej oferty liczymy godziny potrzebne do X;
+  - porównujemy z H: „✅ Mieścisz się w H h” albo „⚠ Potrzebujesz N h, czyli o N − H h więcej”;
+  - kolejność: najpierw oferty mieszczące się w H, potem rosnąco według potrzebnych godzin.
+- Ranking (tryb B, „Nie wiem”): zarobek miesięczny przy H godzinach, malejąco.
+- Przy każdej ofercie: wynik, rozbicie kosztów, oznaczenia priorytetów, link do źródła, data weryfikacji, przycisk „Przejdź do partnera”.
+- Panel „Twoje założenia” (można zmienić): obrót na godzinę, paliwo (% obrotu, LPG / benzyna), prowizja aplikacji, godziny H.
+- Gdy nic nie pasuje: podpowiedź, który filtr poluzować.
+
+**Pomiar:** anonimowe zdarzenia dla każdego pytania (ile osób przechodzi dalej i ile kończy wywiad).
 
 ## 2a. Definicja „zarobku” (zatwierdzona 21.11.2026)
-**Zarobek** = obrót z przejazdów − prowizja aplikacji − opłaty partnera (stała opłata, procent, VAT według oferty) − wynajem auta (jeśli dotyczy) − paliwo (jeśli płaci je kierowca).
+**Zarobek** = obrót z przejazdów − prowizja aplikacji − VAT od przejazdów (według oferty, domyślnie 8%) − opłaty partnera (stała opłata, procent) − wynajem auta (jeśli dotyczy) − paliwo (jeśli płaci je kierowca).
 
 - **Obrót:** kwota zapłacona przez pasażerów za przejazdy, **bez napiwków i bonusów**. To założenie ostrożne: napiwki i bonusy tylko podnoszą wynik.
 - **Nie odejmujemy:** podatku dochodowego ani składek ZUS i zdrowotnej. Ich wysokość zależy od umowy z partnerem i sytuacji kierowcy.
@@ -58,12 +61,13 @@ Zmiany względem v1:
 **Teksty na stronie**
 | Miejsce | Tekst |
 |---|---|
-| Pytanie, tryb A | „Ile chcesz zarabiać miesięcznie? (po opłatach i paliwie, przed podatkiem)” |
-| Pytanie, tryb B | „Ile godzin tygodniowo chcesz jeździć?” |
+| Pytanie 3 wywiadu | „Ile chcesz zarobić minimum miesięcznie? (po opłatach i paliwie, przed podatkiem)” |
+| Pytanie 2 wywiadu | „Ile czasu chcesz poświęcić na jazdę?” |
 | Nagłówek wyniku | „Twój zarobek (przed podatkiem)” |
 | Dymek „Co to znaczy?” | „To, co zostaje Ci z opłat za przejazdy po odjęciu: prowizji aplikacji, opłat partnera, wynajmu auta i paliwa. Nie odjęliśmy podatku ani ZUS, bo zależą od Twojej umowy i sytuacji, np. wieku czy statusu studenta. Nie wliczyliśmy napiwków ani bonusów.” |
 | Przypis pod rankingiem | „To szacunek na podstawie publicznych ofert z dnia [data] i Twoich założeń. Ostateczne warunki potwierdź u partnera przed podpisaniem umowy.” |
 | Ostrzeżenie | „Ponad 60 godzin tygodniowo. Ten cel jest nierealny przy tych założeniach. Zmień kwotę albo założenia.” |
+| Strata (tryb B, zarobek < 0) | „Przy tej liczbie godzin koszty (np. wynajem) są wyższe niż to, co zarobisz. Zwiększ liczbę godzin albo wybierz ofertę bez stałych opłat.” |
 | Etykieta promowania | „Promowane. Partner zapłacił za wyróżnienie. Nie zmienia to rankingu poniżej.” |
 | Ranking (pod wynikiem) | „Jak układamy ranking: według Twojego zarobku albo liczby godzin, wyłącznie na podstawie warunków ofert. Płatności partnerów nie wpływają na kolejność.” |
 
@@ -98,25 +102,26 @@ Oznaczenia:
 - F: stała opłata tygodniowa
 - R: wynajem tygodniowy
 - f: paliwo jako % obrotu (0, jeśli wliczone w ofertę)
+- v: VAT od przejazdów ponoszony przez kierowcę, jako % obrotu (z oferty; gdy brak, założenie domyślne 8%, oznaczone w wyniku)
 - s: udział kierowcy w modelu podziału, np. 50/50
 - h: obrót na godzinę
 - 4,33: liczba tygodni w miesiącu (52 ÷ 12)
 
 **Tryb B (czas → zarobek):**
 - O = godziny × h
-- model z opłatami: zarobek tygodniowo = O × (1 − c − p × b − f) − F − R
-- model podziału: zarobek tygodniowo = O × (1 − c) × s, minus O × f, jeśli paliwo płaci kierowca
+- model z opłatami: zarobek tygodniowo = O × (1 − c − p × b − f − v) − F − R
+- model podziału: zarobek tygodniowo = O × ((1 − c) × s − f − v) − R (R = opłata za auto, jeśli jest; f = 0, gdy paliwo płaci partner)
 - zarobek miesięcznie = zarobek tygodniowo × 4,33
 
 **Tryb A (zarobek → czas), wzór odwrotny:**
 - cel tygodniowo T = cel miesięczny ÷ 4,33
-- model z opłatami: O = (T + F + R) ÷ (1 − c − p × b − f)
-- model podziału: O = T ÷ ((1 − c) × s − f), jeśli paliwo płaci kierowca, albo O = T ÷ ((1 − c) × s), jeśli płaci partner
+- model z opłatami: O = (T + F + R) ÷ (1 − c − p × b − f − v)
+- model podziału: O = (T + R) ÷ ((1 − c) × s − f − v)
 - godziny tygodniowo = O ÷ h
 
 **Kontrola realności:** wynik powyżej 60 godzin tygodniowo oznaczamy jako „nierealne”. Mianownik ≤ 0 oznacza, że oferta nigdy się nie opłaca.
 
-**Przykład na wymyślonych liczbach** (cel 3000 zł miesięcznie, h = 50 zł, f = 15%, c = 0 dla uproszczenia):
+**Przykład na wymyślonych liczbach** (cel 3000 zł miesięcznie, h = 50 zł, f = 15%, c = 0, v = 0 dla uproszczenia):
 | Oferta | Warunki | Potrzebny obrót tygodniowo | Godziny tygodniowo |
 |---|---|---|---|
 | A | własne auto, F = 50 zł | 874 zł | 17,5 |
@@ -125,11 +130,11 @@ Oznaczenia:
 
 ## 5. Model danych (wersja robocza)
 - **partners:** id, nazwa, miasta[], aplikacje[], www, status (szkic / zweryfikowany / archiwalny)
-- **offers:** partner_id, miasto, typ_rozliczenia (stała / procent / mieszany / podział), opłata_stała_tyg, procent, podstawa_naliczania (obrót / po prowizji aplikacji), vat_od (netto / brutto), udział_kierowcy, wynajem_tyg, typ_auta, paliwo_w_cenie, kaucja, częstotliwość_wypłat, języki[], źródło_url, data_weryfikacji, uwagi
-- **assumptions:** miasto, obrót_na_godz_domyślny, paliwo_proc_domyślne, prowizja_aplikacji, źródło_url, data
+- **offers:** partner_id, miasto, typ_rozliczenia (stała / procent / mieszany / podział), opłata_stała_tyg, procent, podstawa_naliczania (obrót / po prowizji aplikacji), vat_od (netto / brutto), udział_kierowcy, wynajem_tyg, typ_auta, paliwo_w_cenie, kaucja, częstotliwość_wypłat, języki[], vat_od_przejazdów (ułamek obrotu lub brak), aplikacje_w_cenie[], brak_opłaty_bez_jazdy (tak/nie/brak), źródło_url, data_weryfikacji, uwagi
+- **assumptions:** miasto, obrót_na_godz_domyślny (może być pusty — wtedy kierowca wpisuje sam), paliwo_proc_domyślne, prowizja_aplikacji, vat_od_przejazdów_domyślny, źródło_url, data
 - **subscriptions:** partner_id, plan (free / pro), status, stripe_customer_id, stripe_subscription_id (tryb testowy)
 - **promotions:** partner_id, offer_id, miasto, od, do, stripe_payment_id (tryb testowy), status
-- **events:** offer_id, tryb (A/B), typ (wyświetlenie / przejście), promowane (tak/nie), data. Zapis anonimowy.
+- **events:** offer_id (opcjonalnie), tryb (A/B), typ (pytanie_1…5 / podsumowanie / wyświetlenie / przejście), promowane (tak/nie), data. Zapis anonimowy.
 
 ## 6. Technologia
 | Warstwa | Wybór | Co daje | Minus |
@@ -152,7 +157,7 @@ Oznaczenia:
 
 ## 8. Kryteria „gotowe”
 - Strona działa pod publicznym adresem, a kod jest w publicznym repozytorium na GitHubie.
-- Kierowca przechodzi całą ścieżkę w obu trybach: pytanie na wejściu → filtry → ranking → przejście do partnera.
+- Kierowca przechodzi całą ścieżkę w obu trybach: wywiad (5 pytań) → podsumowanie → ranking → przejście do partnera.
 - Partner przechodzi całą ścieżkę: rejestracja → edycja oferty → testowy abonament Pro → testowe promowanie → oferta w bloku „Promowane” → statystyki.
 - Co najmniej 15 partnerów w 3 miastach, każda oferta ma źródło i datę weryfikacji nie starszą niż 30 dni.
 - Testy obliczeń: wynik trybu A podstawiony do trybu B daje cel z dokładnością do 1 zł.
@@ -165,7 +170,8 @@ Oznaczenia:
 4. Próg „nierealne” (propozycja: 60 godzin tygodniowo)
 5. Licencja (propozycja: MIT)
 6. ~~Sposób pracy~~ zatwierdzony: hybryda, zob. rozdz. 11
-7. Uwzględnianie VAT w opłatach partnera (pole `vat_od`). Do czasu decyzji obliczenia nie doliczają VAT.
+7. VAT (poprawione 21.11.2026): (a) VAT od opłat partnera — przy wpisywaniu danych podajemy kwoty, które kierowca faktycznie płaci; (b) VAT od przejazdów — osobne pole oferty v (np. 8%, 5%, 0%), bo różni się między partnerami i jest jednym z największych kosztów; gdy brak informacji, założenie 8% oznaczone w wyniku.
+8. Walidacja danych: procenty jako ułamki 0–1, kwoty ≥ 0. Oferta z błędnymi danymi nie trafia do rankingu.
 
 ## 10. Ryzyka
 | Ryzyko | Skutek | Jak ograniczamy |
@@ -188,3 +194,8 @@ Oznaczenia:
   4. Michał sprawdza wynik w przeglądarce,
   5. commit,
   6. krótki raport do projektu.
+
+## 12. Dane startowe (21.11.2026)
+- Plik seed-offers.json: 16 partnerów, 26 ofert (Warszawa 11, Kraków 9, Trójmiasto 6), status „draft” do ręcznej weryfikacji.
+- 10 ofert niepełnych: brak podstawy naliczania procentu, brak cen albo brak obrotu na godzinę dla Trójmiasta.
+- Do rozszerzenia obliczeń: model progowy (np. brak opłat powyżej 3000 zł obrotu tygodniowo).
