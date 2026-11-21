@@ -26,7 +26,7 @@ export const COPY = {
   unrealistic: "Ponad 60 godzin tygodniowo. Ten cel jest nierealny przy tych założeniach. Zmień kwotę albo założenia.",
   loss: "Przy tej liczbie godzin koszty (np. wynajem) są wyższe niż to, co zarobisz. Zwiększ liczbę godzin albo wybierz ofertę bez stałych opłat.",
   rankingRules:
-    "Jak układamy ranking: według Twojego zarobku albo liczby godzin, wyłącznie na podstawie warunków ofert. Płatności partnerów nie wpływają na kolejność.",
+    "Jak układamy ranking: według Twojego zarobku miesięcznego przy podanej liczbie godzin, wyłącznie na podstawie warunków ofert. Płatności partnerów nie wpływają na kolejność.",
   neverProfitable: "Przy tych założeniach ta oferta się nie opłaca: koszty rosną szybciej niż zarobek.",
   vatAssumed: "Oferta nie podaje VAT od przejazdów, przyjęliśmy 8%.",
   needsHourlyInput:

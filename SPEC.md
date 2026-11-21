@@ -42,10 +42,9 @@ Zmiany względem v1:
 - Blok „Promowane” (najwyżej 2 oferty pasujące do filtrów), wyraźnie oznaczony.
 - Ranking (tryb A, gdy podano X):
   - dla każdej oferty liczymy godziny potrzebne do X;
-  - porównujemy z H: „✅ Mieścisz się w H h” albo „⚠ Potrzebujesz N h, czyli o N − H h więcej”;
-  - kolejność: najpierw oferty mieszczące się w H, potem rosnąco według potrzebnych godzin.
-- Ranking (tryb B, „Nie wiem”): zarobek miesięczny przy H godzinach, malejąco.
-- Przy każdej ofercie zawsze widać pieniądze: zarobek miesięczny przy H godzinach (w trybie A obok godzin potrzebnych do X) i zarobek na godzinę jazdy.
+  - porównujemy z H: „✅ Mieścisz się w H h” albo „⚠ Potrzebujesz N h, czyli o N − H h więcej”.
+- Kolejność w obu trybach (zmienione 22.11.2026): zarobek miesięczny przy H godzinach, malejąco. Przy stałym H oferty mieszczące się w H i tak są na górze, bo dają co najmniej X.
+- Przy każdej ofercie na pierwszym planie: „Zarobisz [kwota] zł miesięcznie, pracując [H] h tygodniowo”, do tego zarobek na godzinę jazdy, a w trybie A godziny potrzebne do X.
 - Przy każdej ofercie: wynik, rozbicie kosztów, oznaczenia priorytetów, link do źródła, data weryfikacji, przycisk „Przejdź do partnera”.
 - Panel „Twoje założenia” (można zmienić): obrót na godzinę, paliwo (% obrotu, LPG / benzyna), prowizja aplikacji, godziny H.
 - Gdy nic nie pasuje: podpowiedź, który filtr poluzować.
@@ -70,7 +69,7 @@ Zmiany względem v1:
 | Ostrzeżenie | „Ponad 60 godzin tygodniowo. Ten cel jest nierealny przy tych założeniach. Zmień kwotę albo założenia.” |
 | Strata (tryb B, zarobek < 0) | „Przy tej liczbie godzin koszty (np. wynajem) są wyższe niż to, co zarobisz. Zwiększ liczbę godzin albo wybierz ofertę bez stałych opłat.” |
 | Etykieta promowania | „Promowane. Partner zapłacił za wyróżnienie. Nie zmienia to rankingu poniżej.” |
-| Ranking (pod wynikiem) | „Jak układamy ranking: według Twojego zarobku albo liczby godzin, wyłącznie na podstawie warunków ofert. Płatności partnerów nie wpływają na kolejność.” |
+| Ranking (pod wynikiem) | „Jak układamy ranking: według Twojego zarobku miesięcznego przy podanej liczbie godzin, wyłącznie na podstawie warunków ofert. Płatności partnerów nie wpływają na kolejność.” |
 | Wprowadzenie, tytuł *(propozycja, krok 3)* | „Znajdź partnera flotowego, który się opłaca” |
 | Wprowadzenie, tekst *(propozycja)* | „Odpowiedz na 5 krótkich pytań. Porównamy oferty partnerów w Twoim mieście i pokażemy, ile zarobisz albo ile musisz jeździć. Nie pytamy o imię, telefon ani e-mail.” |
 | Podsumowanie, tryb B *(propozycja)* | „Szukamy partnera dla kierowcy z [miasta], który chce sprawdzić, ile zarobi, jeżdżąc około [H] godzin tygodniowo [autem].” |

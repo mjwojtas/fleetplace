@@ -358,20 +358,25 @@ function OfferCard({
 
       {group === "ranked" && money?.monthlyEarnings != null && (
         <div className="rounded-xl bg-zinc-50 px-4 py-3 dark:bg-zinc-800/60">
-          <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
-            Zarobisz miesięcznie (przed podatkiem)
+          <p className="text-lg leading-snug">
+            Zarobisz{" "}
+            <strong
+              className={[
+                "whitespace-nowrap text-3xl font-bold tabular-nums",
+                money.monthlyEarnings < 0 ? "text-red-700 dark:text-red-400" : "text-emerald-800 dark:text-emerald-300",
+              ].join(" ")}
+            >
+              {formatInt(money.monthlyEarnings)} zł
+            </strong>{" "}
+            miesięcznie,
           </p>
-          <p
-            className={[
-              "text-3xl font-bold tabular-nums",
-              money.monthlyEarnings < 0 ? "text-red-700 dark:text-red-400" : "text-emerald-800 dark:text-emerald-300",
-            ].join(" ")}
-          >
-            {formatInt(money.monthlyEarnings)} zł
+          <p className="text-lg leading-snug">
+            pracując{" "}
+            <strong className="whitespace-nowrap text-3xl font-bold tabular-nums">{formatHours(hours)} h</strong>{" "}
+            tygodniowo
           </p>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            przy {formatHours(hours)} h tygodniowo
-            {perHour !== null && perHour > 0 && <> · ok. {formatInt(perHour)} zł za godzinę jazdy</>}
+          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+            {perHour !== null && perHour > 0 && <>ok. {formatInt(perHour)} zł za godzinę jazdy · </>}przed podatkiem
           </p>
         </div>
       )}

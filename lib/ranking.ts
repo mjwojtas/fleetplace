@@ -4,9 +4,10 @@
  * Order depends only on offer terms and the driver's own answers/assumptions
  * (CLAUDE.md rule 5). Paid promotion is never an input here.
  *
- * Mode A (minimum monthly target X given): hours needed per offer, compared with
- * available hours H. Offers that fit in H come first, then ascending by hours.
- * Mode B ("I don't know"): monthly earnings at H hours, descending.
+ * Both modes are ordered by monthly earnings at the driver's available hours H,
+ * descending (decision 22.11.2026). Mode A (minimum monthly target X given) also
+ * computes the hours needed for X and marks whether they fit in H; with a fixed H,
+ * every offer that fits earns at least X, so fitting offers are naturally on top.
  * Offers that never pay off come after that, incomplete offers last.
  */
 import {
@@ -115,18 +116,15 @@ const GROUP_ORDER: Record<RankGroup, number> = {
   incomplete: 3,
 };
 
-/** Rounded value used for ordering, so that tiny differences count as a tie. */
-function sortKey(item: RankedOffer, mode: "A" | "B"): number {
-  if (mode === "A") return Math.round((item.result.weeklyHours ?? Infinity) * 10) / 10;
-  // Mode B: higher earnings first, ties within 10 PLN.
-  return -Math.round((item.result.monthlyEarnings ?? -Infinity) / 10);
+/** Higher monthly earnings at H first; amounts within 10 PLN count as a tie. */
+function sortKey(item: RankedOffer): number {
+  return -Math.round((item.earningsAtHours?.monthlyEarnings ?? -Infinity) / 10);
 }
 
-export function compareRanked(a: RankedOffer, b: RankedOffer, mode: "A" | "B"): number {
+export function compareRanked(a: RankedOffer, b: RankedOffer): number {
   if (a.group !== b.group) return GROUP_ORDER[a.group] - GROUP_ORDER[b.group];
   if (a.group === "ranked") {
-    if (mode === "A" && a.fitsHours !== b.fitsHours) return a.fitsHours ? -1 : 1;
-    const diff = sortKey(a, mode) - sortKey(b, mode);
+    const diff = sortKey(a) - sortKey(b);
     if (diff !== 0) return diff;
   }
   // Tie: the driver's priorities decide, then a stable order by id.
@@ -180,7 +178,7 @@ export function rankOffers(
     };
   });
 
-  items.sort((a, b) => compareRanked(a, b, mode));
+  items.sort(compareRanked);
   return { mode, items, matchCount: matching.length };
 }
 

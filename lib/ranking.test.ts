@@ -50,7 +50,7 @@ const answers = (o: Partial<DriverAnswers>): DriverAnswers => ({
 
 const ids = (r: ReturnType<typeof rankOffers>) => r.items.map((i) => i.offer.id);
 
-describe("mode A ranking order", () => {
+describe("ranking order (by monthly earnings at H)", () => {
   const offers = loaded([
     offer("cheap", { weeklyFee: 10 }),
     offer("expensive", { weeklyFee: 300 }),
@@ -60,13 +60,21 @@ describe("mode A ranking order", () => {
     offer("incomplete", { settlementType: "percent", percent: 0.1, feeBase: null }),
   ]);
 
-  it("puts offers that fit in H first, then ascending hours, never-profitable and incomplete last", () => {
+  it("puts the highest earnings first (offers that fit in H end up on top), never-profitable and incomplete last", () => {
     // 3000 PLN target, h = 50: cheap ≈ 25.6 h, middle ≈ 28.3 h, expensive ≈ 33.9 h, rental ≈ 43.1 h
     const r = rankOffers(offers, partners, answers({ hours: 30 }), a);
     expect(r.mode).toBe("A");
     expect(ids(r)).toEqual(["cheap", "middle", "expensive", "rental", "never", "incomplete"]);
     expect(r.items.slice(0, 2).every((i) => i.fitsHours)).toBe(true);
     expect(r.items[2].fitsHours).toBe(false);
+  });
+
+  it("sorts by monthly earnings at H, descending, the same way as mode B", () => {
+    const rA = rankOffers(offers, partners, answers({ hours: 30, target: 3000 }), a);
+    const rB = rankOffers(offers, partners, answers({ hours: 30, target: null }), a);
+    expect(ids(rA)).toEqual(ids(rB));
+    const money = rA.items.filter((i) => i.group === "ranked").map((i) => i.earningsAtHours!.monthlyEarnings!);
+    expect(money).toEqual([...money].sort((x, y) => y - x));
   });
 
   it("does not depend on the input order", () => {
