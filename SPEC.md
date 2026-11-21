@@ -70,6 +70,15 @@ Zmiany względem v1:
 | Strata (tryb B, zarobek < 0) | „Przy tej liczbie godzin koszty (np. wynajem) są wyższe niż to, co zarobisz. Zwiększ liczbę godzin albo wybierz ofertę bez stałych opłat.” |
 | Etykieta promowania | „Promowane. Partner zapłacił za wyróżnienie. Nie zmienia to rankingu poniżej.” |
 | Ranking (pod wynikiem) | „Jak układamy ranking: według Twojego zarobku albo liczby godzin, wyłącznie na podstawie warunków ofert. Płatności partnerów nie wpływają na kolejność.” |
+| Wprowadzenie, tytuł *(propozycja, krok 3)* | „Znajdź partnera flotowego, który się opłaca” |
+| Wprowadzenie, tekst *(propozycja)* | „Odpowiedz na 5 krótkich pytań. Porównamy oferty partnerów w Twoim mieście i pokażemy, ile zarobisz albo ile musisz jeździć. Nie pytamy o imię, telefon ani e-mail.” |
+| Podsumowanie, tryb B *(propozycja)* | „Szukamy partnera dla kierowcy z [miasta], który chce sprawdzić, ile zarobi, jeżdżąc około [H] godzin tygodniowo [autem].” |
+| Brak obrotu na godzinę *(propozycja)* | „Nie mamy publicznego źródła obrotu na godzinę dla tego miasta. Wpisz w „Twoich założeniach”, ile średnio płacą pasażerowie za godzinę jazdy, a policzymy wynik.” |
+| VAT założony *(propozycja)* | „Oferta nie podaje VAT od przejazdów, przyjęliśmy 8%.” |
+| Nigdy się nie opłaca *(propozycja)* | „Przy tych założeniach ta oferta się nie opłaca: koszty rosną szybciej niż zarobek.” |
+| Oferty niepełne *(propozycja)* | Nagłówek „Oferty z niepełnymi danymi”, tekst „Nie liczymy wyniku, bo źródło nie podaje wszystkich warunków.”, przy ofercie „Brak informacji o: [pola].” |
+| Pusty wynik *(propozycja)* | „Żadna oferta nie pasuje do Twoich odpowiedzi.” + podpowiedź, np. „Odznacz „Kilka aplikacji naraz”: znajdziesz N ofert.” albo „Zmień odpowiedź „Czym chcesz jeździć?” na „Jeszcze nie wiem”: znajdziesz N ofert.” |
+| Pusty wynik, brak podpowiedzi *(propozycja)* | „W tym mieście nie mamy jeszcze ofert spełniających te warunki. Spróbuj innego miasta albo wróć wkrótce.” |
 
 ## 3. Funkcje
 **A. Strona kierowcy (bez logowania):** ścieżka z punktu 2. Strona nie zbiera danych kierowców, tylko przekierowuje do partnera.
