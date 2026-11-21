@@ -34,4 +34,3 @@ Właściciel produktu prowadzi projekt od strony biznesowej i zatwierdza każdy 
 - uruchomienie lokalne: `npm run dev` (adres: http://localhost:3000)
 - testy: `npm test` (Vitest)
 - lint: `npm run lint`
-- Projekt leży na iCloud Drive: `node_modules` i `.next` są wyłączone z synchronizacji przez `scripts/icloud-ignore.mjs` (uruchamia się samo przy `npm install`, `npm run dev`, `npm run build`).

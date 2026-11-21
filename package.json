@@ -8,10 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "test:watch": "vitest",
-    "postinstall": "node scripts/icloud-ignore.mjs",
-    "predev": "node scripts/icloud-ignore.mjs",
-    "prebuild": "node scripts/icloud-ignore.mjs"
+    "test:watch": "vitest"
   },
   "dependencies": {
     "next": "16.4.6",
