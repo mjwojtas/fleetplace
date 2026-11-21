@@ -5,6 +5,21 @@
   --foreground: #171717;
 }
 
+/* Brand accent: burgundy (classic burgundy #800020 at 700). */
+@theme {
+  --color-burgundy-50: #fcf3f5;
+  --color-burgundy-100: #f9e4e8;
+  --color-burgundy-200: #f1c4ce;
+  --color-burgundy-300: #e597a8;
+  --color-burgundy-400: #d0637c;
+  --color-burgundy-500: #b23a57;
+  --color-burgundy-600: #962642;
+  --color-burgundy-700: #800020;
+  --color-burgundy-800: #6a0f25;
+  --color-burgundy-900: #560d1f;
+  --color-burgundy-950: #33050f;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

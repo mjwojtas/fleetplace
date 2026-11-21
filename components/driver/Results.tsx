@@ -89,7 +89,7 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
           <button
             type="button"
             onClick={onRestart}
-            className="font-medium text-emerald-700 underline underline-offset-4 dark:text-emerald-400"
+            className="font-medium text-burgundy-700 underline underline-offset-4 dark:text-burgundy-400"
           >
             {COPY.changeAnswers}
           </button>
@@ -107,7 +107,7 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
             className="flex w-full items-center justify-between gap-3 text-left lg:pointer-events-none"
           >
             <span className="text-base font-semibold lg:text-lg">{COPY.assumptionsTitle}</span>
-            <span className="text-sm font-medium text-emerald-700 dark:text-emerald-400 lg:hidden">
+            <span className="text-sm font-medium text-burgundy-700 dark:text-burgundy-400 lg:hidden">
               {panelOpen ? "Zwiń" : "Zmień"}
             </span>
           </button>
@@ -141,7 +141,7 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
                       className={[
                         "flex-1 rounded-lg border-2 px-3 py-2 text-sm font-medium",
                         fuelType === t
-                          ? "border-emerald-600 bg-emerald-50 dark:bg-emerald-950"
+                          ? "border-burgundy-600 bg-burgundy-50 dark:bg-burgundy-950"
                           : "border-zinc-200 dark:border-zinc-700",
                       ].join(" ")}
                     >
@@ -170,7 +170,7 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <h1 className="text-xl font-semibold sm:text-2xl">{COPY.resultHeading}</h1>
             <details className="text-sm">
-              <summary className="cursor-pointer font-medium text-emerald-700 underline underline-offset-4 dark:text-emerald-400">
+              <summary className="cursor-pointer font-medium text-burgundy-700 underline underline-offset-4 dark:text-burgundy-400">
                 {COPY.whatDoesItMean}
               </summary>
               <p className="mt-2 max-w-prose rounded-lg bg-zinc-100 p-3 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
@@ -179,7 +179,7 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
             </details>
           </div>
           {verdict && (
-            <p className="rounded-xl bg-emerald-50 px-4 py-3 text-base font-medium leading-snug text-emerald-950 dark:bg-emerald-950 dark:text-emerald-50">
+            <p className="rounded-xl bg-burgundy-50 px-4 py-3 text-base font-medium leading-snug text-burgundy-950 dark:bg-burgundy-950 dark:text-burgundy-50">
               {verdict}
             </p>
           )}
@@ -288,7 +288,7 @@ function EmptyState({
           <button
             type="button"
             onClick={() => onApply(best.answers)}
-            className="self-start rounded-xl bg-emerald-700 px-4 py-3 text-sm font-semibold text-white hover:bg-emerald-800"
+            className="self-start rounded-xl bg-burgundy-700 px-4 py-3 text-sm font-semibold text-white hover:bg-burgundy-800"
           >
             Pokaż te oferty
           </button>
@@ -381,7 +381,7 @@ function OfferCard({
             <strong
               className={[
                 "whitespace-nowrap text-3xl font-bold tabular-nums",
-                money.monthlyEarnings < 0 ? "text-red-700 dark:text-red-400" : "text-emerald-800 dark:text-emerald-300",
+                money.monthlyEarnings < 0 ? "text-red-700 dark:text-red-400" : "text-zinc-900 dark:text-white",
               ].join(" ")}
             >
               {formatInt(money.monthlyEarnings)} zł
@@ -479,7 +479,7 @@ function OfferCard({
           href={href}
           target="_blank"
           rel="noopener noreferrer nofollow"
-          className="rounded-xl border-2 border-emerald-700 px-4 py-2 text-center text-sm font-semibold text-emerald-800 hover:bg-emerald-50 dark:border-emerald-500 dark:text-emerald-300 dark:hover:bg-emerald-950"
+          className="rounded-xl border-2 border-burgundy-700 px-4 py-2 text-center text-sm font-semibold text-burgundy-800 hover:bg-burgundy-50 dark:border-burgundy-500 dark:text-burgundy-300 dark:hover:bg-burgundy-950"
         >
           {COPY.goToPartner}
         </a>
