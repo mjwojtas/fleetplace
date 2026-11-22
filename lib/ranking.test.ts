@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import type { Assumptions, Offer } from "./calc";
+import { earningsForHours, hoursForTarget, type Assumptions, type Offer } from "./calc";
 import { missingFieldsText, offersCount, relaxationHint, summarySentence, verdictSentence } from "./copy";
 import { getAssumptions, loadOffers, seedData, type LoadedOffer, type Partner } from "./data";
-import { priorityStatus, rankOffers, suggestRelaxations, type DriverAnswers } from "./ranking";
+import { hourlyRange, priorityStatus, rankOffers, suggestRelaxations, type DriverAnswers } from "./ranking";
 
 // Made-up fixtures (not real partners).
 function offer(id: string, overrides: Partial<Offer>): Offer {
@@ -302,5 +302,55 @@ describe("verdict sentence", () => {
 
   it("uses the 'Brakuje:' wording for incomplete offers", () => {
     expect(missingFieldsText(["weeklyFee"])).toBe("Brakuje: kwoty opłaty stałej.");
+  });
+});
+
+describe("earnings range from the hourly turnover range", () => {
+  const ranged: Assumptions = { ...a, hourlyTurnover: 50, hourlyTurnoverLow: 45, hourlyTurnoverHigh: 56 };
+  const offers = loaded([offer("cheap", { weeklyFee: 10 }), offer("rental", { carType: "rental", weeklyRent: 400 })]);
+
+  it("low ≤ typical ≤ high for earnings and hours", () => {
+    const r = rankOffers(offers, partners, answers({ hours: 20, target: 3000 }), ranged);
+    for (const item of r.items) {
+      const rg = item.range!;
+      const base = item.earningsAtHours!.monthlyEarnings!;
+      expect(rg.earningsLow).toBeLessThanOrEqual(base);
+      expect(base).toBeLessThanOrEqual(rg.earningsHigh);
+      expect(rg.hoursLow!).toBeLessThanOrEqual(item.result.weeklyHours!);
+      expect(item.result.weeklyHours!).toBeLessThanOrEqual(rg.hoursHigh!);
+    }
+  });
+
+  it("A -> B gives the target back (±1 PLN) at both ends of the range", () => {
+    for (const h of [45, 56]) {
+      const at = { ...ranged, hourlyTurnover: h };
+      for (const { offer: o } of offers) {
+        const hours = hoursForTarget(o, at, 3000).weeklyHours!;
+        expect(Math.abs(earningsForHours(o, at, hours).monthlyEarnings! - 3000)).toBeLessThanOrEqual(1);
+      }
+    }
+  });
+
+  it("ranking order uses the typical value only", () => {
+    const withRange = ids(rankOffers(offers, partners, answers({}), ranged));
+    const without = ids(rankOffers(offers, partners, answers({}), { ...ranged, hourlyTurnoverLow: null, hourlyTurnoverHigh: null }));
+    expect(withRange).toEqual(without);
+  });
+
+  it("ignores a missing or invalid range", () => {
+    expect(hourlyRange({ ...ranged, hourlyTurnoverLow: null })).toBeNull();
+    expect(hourlyRange({ ...ranged, hourlyTurnover: 60 })).toBeNull(); // typical outside the range
+    expect(hourlyRange({ ...ranged, hourlyTurnoverLow: 56, hourlyTurnoverHigh: 45 })).toBeNull();
+    const r = rankOffers(offers, partners, answers({}), { ...ranged, hourlyTurnoverHigh: null });
+    expect(r.items.every((i) => i.range === null)).toBe(true);
+  });
+
+  it("seed data: every city range is valid or absent", () => {
+    for (const city of ["warszawa", "krakow", "trojmiasto"] as const) {
+      const as = getAssumptions(city);
+      if (as.hourlyTurnoverLow != null || as.hourlyTurnoverHigh != null) {
+        expect(hourlyRange(as), city).not.toBeNull();
+      }
+    }
   });
 });

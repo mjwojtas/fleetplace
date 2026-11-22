@@ -95,6 +95,10 @@ export interface Assumptions {
   city: City;
   /** obrót_na_godz_domyślny: turnover per hour (PLN), "h". Null = no public source, the driver enters it. */
   hourlyTurnover: number | null;
+  /** Lower bound of turnover per hour (PLN), to show earnings as a range. Null = no range. */
+  hourlyTurnoverLow?: number | null;
+  /** Upper bound of turnover per hour (PLN). The base value must lie within the range. */
+  hourlyTurnoverHigh?: number | null;
   /** paliwo_proc_domyślne: fuel cost as a fraction of turnover, "f". */
   fuelPercent: number;
   /** prowizja_aplikacji: app commission as a fraction of turnover, "c". */

@@ -45,6 +45,7 @@ Zmiany względem v1:
   - porównujemy z H: „✅ Mieścisz się w H h” albo „⚠ Potrzebujesz N h, czyli o N − H h więcej”.
 - Kolejność w obu trybach (zmienione 22.11.2026): zarobek miesięczny przy H godzinach, malejąco. Przy stałym H oferty mieszczące się w H i tak są na górze, bo dają co najmniej X.
 - Przy każdej ofercie na pierwszym planie: „Zarobisz [kwota] zł miesięcznie, pracując [H] h tygodniowo”, do tego zarobek na godzinę jazdy, a w trybie A godziny potrzebne do X.
+- Zarobek jako przedział (zatwierdzone 23.11.2026): gdy miasto ma zakres obrotu na godzinę (od–do), kwota i godziny do X pokazujemy jako przedział, a obok wartość „typowo”. Ranking i werdykt liczymy z wartości typowej. Zakresy startowe: Warszawa 45–56 zł/h (typowo 50), Kraków 48–65 zł/h (typowo 53); dolne granice to założenie ok. 10% poniżej wartości typowej.
 - Przy każdej ofercie: wynik, rozbicie kosztów, oznaczenia priorytetów, link do źródła, data weryfikacji, przycisk „Przejdź do partnera”.
 - Panel „Twoje założenia” (można zmienić): obrót na godzinę, paliwo (% obrotu, LPG / benzyna), prowizja aplikacji, godziny H.
 - Gdy nic nie pasuje: podpowiedź, który filtr poluzować.
@@ -74,6 +75,7 @@ Zmiany względem v1:
 | Werdykt, tryb A, co najmniej jedna oferta mieści się w H | „[N] ofert da Ci minimum [X] zł przy [H] h tygodniowo. Najlepsza: [partner], [kwota] zł.” (odmiana: „1 oferta da”, „2–4 oferty dadzą”, „5 ofert da”) |
 | Werdykt, tryb A, żadna oferta nie mieści się w H | „Przy [H] h tygodniowo żadna oferta nie da [X] zł. Najbliżej: [partner], potrzebujesz o [N] h więcej.” („Najbliżej” = najmniej brakujących godzin) |
 | Werdykt, tryb B | „Najwięcej zarobisz u [partner]: [kwota] zł miesięcznie przy [H] h.” |
+| Zarobek jako przedział | „Zarobisz [od]–[do] zł miesięcznie, pracując [H] h tygodniowo”, pod spodem „typowo [kwota] zł”; w trybie A dodatkowo „Zależnie od obrotu na godzinę: [od]–[do] h.” |
 | Opłata miesięczna w źródle | „[kwota] zł/mies. (≈ [kwota tygodniowa] zł/tydz.)”, np. „50 zł/mies. (≈ 11,54 zł/tydz.)” |
 | Wprowadzenie, tytuł *(propozycja, krok 3)* | „Znajdź partnera flotowego, który się opłaca” |
 | Wprowadzenie, tekst *(propozycja)* | „Odpowiedz na 5 krótkich pytań. Porównamy oferty partnerów w Twoim mieście i pokażemy, ile zarobisz albo ile musisz jeździć. Nie pytamy o imię, telefon ani e-mail.” |
@@ -145,7 +147,7 @@ Oznaczenia:
 ## 5. Model danych (wersja robocza)
 - **partners:** id, nazwa, miasta[], aplikacje[], www, status (szkic / zweryfikowany / archiwalny)
 - **offers:** partner_id, miasto, typ_rozliczenia (stała / procent / mieszany / podział), opłata_stała_tyg, opłata_ze_źródła (kwota + okres: tydzień / miesiąc), procent, podstawa_naliczania (obrót / po prowizji aplikacji), vat_od (netto / brutto), udział_kierowcy, wynajem_tyg, typ_auta, paliwo_w_cenie, kaucja, częstotliwość_wypłat, języki[], vat_od_przejazdów (ułamek obrotu lub brak), aplikacje_w_cenie[], brak_opłaty_bez_jazdy (tak/nie/brak), źródło_url, data_weryfikacji, uwagi
-- **assumptions:** miasto, obrót_na_godz_domyślny (może być pusty — wtedy kierowca wpisuje sam), paliwo_proc_domyślne, prowizja_aplikacji, vat_od_przejazdów_domyślny, źródło_url, data
+- **assumptions:** miasto, obrót_na_godz_domyślny (może być pusty — wtedy kierowca wpisuje sam), obrót_na_godz_od, obrót_na_godz_do (zakres do pokazania przedziału; puste = brak przedziału), paliwo_proc_domyślne, prowizja_aplikacji, vat_od_przejazdów_domyślny, źródło_url, data
 - **subscriptions:** partner_id, plan (free / pro), status, stripe_customer_id, stripe_subscription_id (tryb testowy)
 - **promotions:** partner_id, offer_id, miasto, od, do, stripe_payment_id (tryb testowy), status
 - **events:** offer_id (opcjonalnie), tryb (A/B), typ (pytanie_1…5 / podsumowanie / wyświetlenie / przejście), promowane (tak/nie), data. Zapis anonimowy.

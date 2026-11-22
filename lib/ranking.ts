@@ -58,7 +58,53 @@ export interface RankedOffer {
    * so the driver always sees earnings in PLN. Null when the offer cannot be calculated.
    */
   earningsAtHours: CalcResult | null;
+  /**
+   * Uncertainty range from the hourly turnover range (SPEC.md section 2, decision 23.11.2026).
+   * Ranking and the verdict use the base value; the range is shown next to it.
+   * Null when the city has no range or the offer cannot be calculated.
+   */
+  range: OfferRange | null;
   marks: PriorityMark[];
+}
+
+export interface OfferRange {
+  /** Monthly earnings at H with the low / high hourly turnover. */
+  earningsLow: number;
+  earningsHigh: number;
+  /** Mode A only: hours needed for X with the high / low hourly turnover (fewest / most). */
+  hoursLow: number | null;
+  hoursHigh: number | null;
+}
+
+/** Returns the valid hourly turnover range (low ≤ base ≤ high), or null. */
+export function hourlyRange(a: Assumptions): { low: number; high: number } | null {
+  const { hourlyTurnover: base, hourlyTurnoverLow: low, hourlyTurnoverHigh: high } = a;
+  if (base == null || low == null || high == null) return null;
+  if (!(low > 0) || !(low <= base && base <= high) || low === high) return null;
+  return { low, high };
+}
+
+function offerRange(
+  offer: Offer,
+  assumptions: Assumptions,
+  answers: DriverAnswers,
+  mode: "A" | "B",
+): OfferRange | null {
+  const r = hourlyRange(assumptions);
+  if (!r) return null;
+  const atLow = { ...assumptions, hourlyTurnover: r.low };
+  const atHigh = { ...assumptions, hourlyTurnover: r.high };
+  const eLow = earningsForHours(offer, atLow, answers.hours).monthlyEarnings;
+  const eHigh = earningsForHours(offer, atHigh, answers.hours).monthlyEarnings;
+  if (eLow === null || eHigh === null) return null;
+  let hoursLow: number | null = null;
+  let hoursHigh: number | null = null;
+  if (mode === "A" && answers.target !== null) {
+    // Higher turnover per hour -> fewer hours needed.
+    hoursLow = hoursForTarget(offer, atHigh, answers.target).weeklyHours;
+    hoursHigh = hoursForTarget(offer, atLow, answers.target).weeklyHours;
+  }
+  return { earningsLow: eLow, earningsHigh: eHigh, hoursLow, hoursHigh };
 }
 
 export interface RankingResult {
@@ -174,6 +220,7 @@ export function rankOffers(
       fitsHours,
       extraHours,
       earningsAtHours,
+      range: group === "ranked" ? offerRange(offer, assumptions, answers, mode) : null,
       marks: answers.priorities.map((priority) => ({ priority, status: priorityStatus(offer, priority) })),
     };
   });

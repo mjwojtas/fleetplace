@@ -12,33 +12,41 @@
       "feeQuotedAmount": "Kwota opłaty stałej tak, jak podaje ją źródło (w okresie feeQuotedPeriod). weeklyFee to ta sama opłata przeliczona na tydzień (miesięczna × 12 ÷ 52), używana w obliczeniach.",
       "feeQuotedPeriod": "Okres opłaty w źródle: 'week' albo 'month'. null = brak kwoty w źródle.",
       "conflicting": "true = źródła (albo różne strony tego samego partnera) podają sprzeczne warunki; szczegóły w polu notes. Brak pola = nie znaleziono sprzeczności.",
-      "partnersWithoutTerms": "Partnerzy znalezieni w tych miastach, którzy nie publikują żadnych cen. Nie trafiają do rankingu."
+      "partnersWithoutTerms": "Partnerzy znalezieni w tych miastach, którzy nie publikują żadnych cen. Nie trafiają do rankingu.",
+      "hourlyTurnoverLow": "Dolna granica obrotu na godzinę (PLN) do pokazania zarobku jako przedziału. null = brak przedziału.",
+      "hourlyTurnoverHigh": "Górna granica obrotu na godzinę (PLN). Wartość bazowa hourlyTurnover musi mieścić się w przedziale."
     }
   },
   "assumptions": [
     {
       "city": "warszawa",
       "hourlyTurnover": 50,
+      "hourlyTurnoverLow": 45,
+      "hourlyTurnoverHigh": 56,
       "fuelPercent": 0.12,
       "appCommission": 0.25,
       "rideVatDefault": 0.08,
       "sourceUrl": "https://mowj.pl/blog/ile-zarabia-kierowca-bolta/",
       "date": "2026-11-21",
-      "notes": "Obrót/h: przykład z artykułu (50 zł/h, 'nieco poniżej średnich'); dane partnerów dla woj. mazowieckiego 55,24–55,89 zł/h, bez informacji, czy przed prowizją. Paliwo: wyliczone z przykładów artykułu (ok. 258 zł LPG przy ok. 2250 zł obrotu ≈ 11,5%); dla benzyny ok. 2× więcej. Prowizja aplikacji: źródła publiczne podają 20–31% (25% + VAT ≈ 31%); przyjęto 25%, do decyzji. VAT 8%: carsar.pl, oko.press."
+      "notes": "Obrót/h: przykład z artykułu (50 zł/h, 'nieco poniżej średnich'); dane partnerów dla woj. mazowieckiego 55,24–55,89 zł/h, bez informacji, czy przed prowizją. Paliwo: wyliczone z przykładów artykułu (ok. 258 zł LPG przy ok. 2250 zł obrotu ≈ 11,5%); dla benzyny ok. 2× więcej. Prowizja aplikacji: źródła publiczne podają 20–31% (25% + VAT ≈ 31%); przyjęto 25%, do decyzji. VAT 8%: carsar.pl, oko.press. Zakres obrotu/h: górna granica 56 zł z danych partnerów dla woj. mazowieckiego (55,24–55,89 zł/h); dolna granica 45 zł to założenie (ok. 10% poniżej wartości bazowej), bo źródła podają tylko wartości typowe."
     },
     {
       "city": "krakow",
       "hourlyTurnover": 53,
+      "hourlyTurnoverLow": 48,
+      "hourlyTurnoverHigh": 65,
       "fuelPercent": 0.12,
       "appCommission": 0.25,
       "rideVatDefault": 0.08,
       "sourceUrl": "https://flowapps.pl/praca/kierowca-bolt/krakow/",
       "date": "2026-11-21",
-      "notes": "Obrót/h: Flow Apps podaje 'nawet powyżej 53 zł za godzinę'; AGMER TAXI podaje 65–80 zł brutto/h. Oba źródła to materiały marketingowe partnerów, więc mogą zawyżać. Paliwo i prowizja jak dla Warszawy."
+      "notes": "Obrót/h: Flow Apps podaje 'nawet powyżej 53 zł za godzinę'; AGMER TAXI podaje 65–80 zł brutto/h. Oba źródła to materiały marketingowe partnerów, więc mogą zawyżać. Paliwo i prowizja jak dla Warszawy. Zakres obrotu/h: górna granica 65 zł to dolna wartość z materiału AGMER TAXI (65–80 zł brutto/h, reklama, może zawyżać); dolna granica 48 zł to założenie (ok. 10% poniżej wartości bazowej)."
     },
     {
       "city": "trojmiasto",
       "hourlyTurnover": null,
+      "hourlyTurnoverLow": null,
+      "hourlyTurnoverHigh": null,
       "fuelPercent": 0.12,
       "appCommission": 0.25,
       "rideVatDefault": 0.08,

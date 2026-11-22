@@ -16,7 +16,7 @@ import {
   verdictSentence,
 } from "@/lib/copy";
 import type { LoadedOffer, Partner } from "@/lib/data";
-import { rankOffers, suggestRelaxations, type DriverAnswers, type RankedOffer } from "@/lib/ranking";
+import { hourlyRange, rankOffers, suggestRelaxations, type DriverAnswers, type RankedOffer } from "@/lib/ranking";
 
 interface ResultsProps {
   offers: LoadedOffer[];
@@ -43,7 +43,10 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
   // Petrol costs about twice as much as LPG per km (seed data note); LPG is the city default.
   const fuelDefaults: Record<FuelType, number> = { lpg: base.fuelPercent, petrol: base.fuelPercent * 2 };
 
-  const [hourly, setHourly] = useState(base.hourlyTurnover === null ? "" : String(base.hourlyTurnover));
+  const str = (n: number | null | undefined) => (n == null ? "" : String(n));
+  const [hourly, setHourly] = useState(str(base.hourlyTurnover));
+  const [hourlyLow, setHourlyLow] = useState(str(base.hourlyTurnoverLow));
+  const [hourlyHigh, setHourlyHigh] = useState(str(base.hourlyTurnoverHigh));
   const [fuelType, setFuelType] = useState<FuelType>("lpg");
   const [fuel, setFuel] = useState(pct(fuelDefaults.lpg));
   const [commission, setCommission] = useState(pct(base.appCommission));
@@ -54,15 +57,20 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
 
   const effective: Assumptions = useMemo(() => {
     const h = parseNumber(hourly);
+    const lo = parseNumber(hourlyLow);
+    const hi = parseNumber(hourlyHigh);
     const f = parseNumber(fuel);
     const c = parseNumber(commission);
     return {
       ...base,
       hourlyTurnover: h !== null && h > 0 ? h : null,
+      // An invalid or partial range (e.g. typical value outside it) is ignored: single values are shown.
+      hourlyTurnoverLow: lo !== null && lo > 0 ? lo : null,
+      hourlyTurnoverHigh: hi !== null && hi > 0 ? hi : null,
       fuelPercent: f !== null && f >= 0 && f < 100 ? f / 100 : base.fuelPercent,
       appCommission: c !== null && c >= 0 && c < 100 ? c / 100 : base.appCommission,
     };
-  }, [base, hourly, fuel, commission]);
+  }, [base, hourly, hourlyLow, hourlyHigh, fuel, commission]);
 
   const ranking = useMemo(() => rankOffers(offers, partners, answers, effective), [offers, partners, answers, effective]);
   const suggestions = useMemo(
@@ -74,6 +82,13 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
   const ranked = ranking.items.filter((i) => i.group !== "incomplete");
   const incomplete = ranking.items.filter((i) => i.group === "incomplete");
   const needsHourly = effective.hourlyTurnover === null;
+  const range = hourlyRange(effective);
+  const hourlySummary =
+    effective.hourlyTurnover === null
+      ? "obrót: wpisz"
+      : range
+        ? `${formatInt(range.low)}–${formatInt(range.high)} zł/h (typowo ${formatInt(effective.hourlyTurnover)})`
+        : `${formatInt(effective.hourlyTurnover)} zł/h`;
 
   const updateHours = (value: string) => {
     setHours(value);
@@ -113,19 +128,24 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
           </button>
           {!panelOpen && (
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 lg:hidden">
-              {effective.hourlyTurnover === null ? "obrót: wpisz" : `${formatInt(effective.hourlyTurnover)} zł/h`} ·{" "}
+              {hourlySummary} ·{" "}
               {fuelType === "lpg" ? "LPG" : "benzyna"} {fuel}% · prowizja {commission}% · {hours} h tyg.
             </p>
           )}
           <div id="assumptions-panel" className={panelOpen ? "block" : "hidden lg:block"}>
             <div className="mt-4 flex flex-col gap-4">
-              <NumberField
-                label="Obrót na godzinę (zł)"
-                hint="Ile płacą pasażerowie za godzinę jazdy, przed prowizją."
-                value={hourly}
-                onChange={setHourly}
-                highlight={needsHourly}
-              />
+              <fieldset className="flex flex-col gap-1">
+                <legend className="text-sm font-medium">Obrót na godzinę (zł)</legend>
+                <span className="text-xs text-zinc-500">
+                  Ile płacą pasażerowie za godzinę jazdy, przed prowizją. Zarobek pokazujemy jako przedział od–do,
+                  ranking liczymy z wartości typowej.
+                </span>
+                <div className="mt-1 grid grid-cols-3 gap-2">
+                  <NumberField label="od" value={hourlyLow} onChange={setHourlyLow} small />
+                  <NumberField label="typowo" value={hourly} onChange={setHourly} highlight={needsHourly} small />
+                  <NumberField label="do" value={hourlyHigh} onChange={setHourlyHigh} small />
+                </div>
+              </fieldset>
               <div className="flex flex-col gap-2">
                 <span className="text-sm font-medium">Paliwo (% obrotu)</span>
                 <div className="flex gap-2" role="group" aria-label="Rodzaj paliwa">
@@ -240,6 +260,7 @@ function NumberField({
   suffix,
   highlight,
   ariaLabel,
+  small,
 }: {
   label: string;
   hint?: string;
@@ -248,10 +269,12 @@ function NumberField({
   suffix?: string;
   highlight?: boolean;
   ariaLabel?: string;
+  /** Compact label for fields placed side by side. */
+  small?: boolean;
 }) {
   return (
     <label className="flex flex-col gap-1">
-      {label && <span className="text-sm font-medium">{label}</span>}
+      {label && <span className={small ? "text-xs text-zinc-500" : "text-sm font-medium"}>{label}</span>}
       {hint && <span className="text-xs text-zinc-500">{hint}</span>}
       <span className="flex items-center gap-2">
         <input
@@ -384,7 +407,9 @@ function OfferCard({
                 money.monthlyEarnings < 0 ? "text-red-700 dark:text-red-400" : "text-zinc-900 dark:text-white",
               ].join(" ")}
             >
-              {formatInt(money.monthlyEarnings)} zł
+              {item.range
+                ? `${formatInt(item.range.earningsLow)}–${formatInt(item.range.earningsHigh)} zł`
+                : `${formatInt(money.monthlyEarnings)} zł`}
             </strong>{" "}
             miesięcznie,
           </p>
@@ -394,6 +419,7 @@ function OfferCard({
             tygodniowo
           </p>
           <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+            {item.range && <>typowo {formatInt(money.monthlyEarnings)} zł · </>}
             {perHour !== null && perHour > 0 && <>ok. {formatInt(perHour)} zł za godzinę jazdy · </>}przed podatkiem
           </p>
         </div>
@@ -411,6 +437,11 @@ function OfferCard({
           {item.fitsHours
             ? `✅ Cel ${formatInt(target ?? 0)} zł osiągniesz w ${formatHours(result.weeklyHours!)} h tygodniowo. Mieścisz się w ${formatHours(hours)} h.`
             : `⚠ Na cel ${formatInt(target ?? 0)} zł potrzebujesz ${formatHours(result.weeklyHours!)} h tygodniowo, czyli o ${formatHours(item.extraHours!)} h więcej.`}
+          {item.range?.hoursLow != null && item.range.hoursHigh != null && (
+            <span className="block font-normal">
+              Zależnie od obrotu na godzinę: {formatHours(item.range.hoursLow)}–{formatHours(item.range.hoursHigh)} h.
+            </span>
+          )}
         </p>
       )}
 
