@@ -255,7 +255,7 @@ describe("seed data: Kraków, half-time, 3000 PLN, own car, several apps", () =>
     expect(r.items.length).toBeGreaterThan(0);
     const groups = r.items.map((i) => i.group);
     expect(groups.indexOf("incomplete")).toBeGreaterThan(groups.lastIndexOf("ranked"));
-    expect(seedData.offers.length).toBe(26);
+    expect(seedData.offers.length).toBe(69);
   });
 });
 

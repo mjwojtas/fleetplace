@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "collectedAt": "2026-11-21",
+    "collectedAt": "2026-11-22",
     "status": "draft",
     "note": "Dane zebrane z publicznych stron partnerów i wyników wyszukiwania. Wszystkie oferty mają status 'draft' do czasu ręcznej weryfikacji. Kwoty tygodniowe w PLN, procenty jako ułamki. null = brak informacji w źródle.",
     "fieldNotes": {
@@ -10,7 +10,9 @@
       "feeBase": "null = źródło nie podaje, od czego liczony jest procent; oferta będzie oznaczona jako niepełna.",
       "noFeeIdleWeek": "true = partner nie pobiera opłaty w tygodniu bez przejazdów; null = źródło nie podaje.",
       "feeQuotedAmount": "Kwota opłaty stałej tak, jak podaje ją źródło (w okresie feeQuotedPeriod). weeklyFee to ta sama opłata przeliczona na tydzień (miesięczna × 12 ÷ 52), używana w obliczeniach.",
-      "feeQuotedPeriod": "Okres opłaty w źródle: 'week' albo 'month'. null = brak kwoty w źródle."
+      "feeQuotedPeriod": "Okres opłaty w źródle: 'week' albo 'month'. null = brak kwoty w źródle.",
+      "conflicting": "true = źródła (albo różne strony tego samego partnera) podają sprzeczne warunki; szczegóły w polu notes. Brak pola = nie znaleziono sprzeczności.",
+      "partnersWithoutTerms": "Partnerzy znalezieni w tych miastach, którzy nie publikują żadnych cen. Nie trafiają do rankingu."
     }
   },
   "assumptions": [
@@ -160,6 +162,7 @@
       "id": "flow-apps",
       "name": "Flow Apps",
       "cities": [
+        "warszawa",
         "krakow"
       ],
       "apps": [
@@ -174,7 +177,8 @@
       "id": "eres-partner",
       "name": "ERES Partner",
       "cities": [
-        "krakow"
+        "krakow",
+        "trojmiasto"
       ],
       "apps": [
         "uber",
@@ -216,6 +220,7 @@
       "id": "onlygo",
       "name": "Onlygo",
       "cities": [
+        "krakow",
         "trojmiasto"
       ],
       "apps": [
@@ -266,6 +271,289 @@
         "freenow"
       ],
       "www": "https://3mdrivers.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "evelstar",
+      "name": "Evelstar",
+      "cities": [
+        "warszawa",
+        "krakow",
+        "trojmiasto"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://evelstar.com/",
+      "status": "draft"
+    },
+    {
+      "id": "udriver",
+      "name": "UDriver",
+      "cities": [
+        "warszawa",
+        "krakow",
+        "trojmiasto"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://udriver.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "mb-partner",
+      "name": "MB Partner",
+      "cities": [
+        "warszawa",
+        "krakow",
+        "trojmiasto"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://mbpartners.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "simply-partner",
+      "name": "Simply Partner",
+      "cities": [
+        "warszawa"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://simplypartner.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "green-partners",
+      "name": "Green Partners",
+      "cities": [
+        "warszawa"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://green-partners.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "btpartner",
+      "name": "BTPartner",
+      "cities": [
+        "warszawa",
+        "krakow",
+        "trojmiasto"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://btpartner.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "ramnext",
+      "name": "Ramnext",
+      "cities": [
+        "warszawa",
+        "krakow",
+        "trojmiasto"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://www.ramnext.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "departner",
+      "name": "DEPartner",
+      "cities": [
+        "krakow"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://departner.pl/krakow/",
+      "status": "draft"
+    },
+    {
+      "id": "hybgo",
+      "name": "HybGo",
+      "cities": [
+        "krakow"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://hybgo.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "bors-partner",
+      "name": "BORS PARTNER",
+      "cities": [
+        "krakow"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://borspartner.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "bonitocars",
+      "name": "BonitoCars",
+      "cities": [
+        "krakow"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://bonitocars.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "lbncars",
+      "name": "LbnCars",
+      "cities": [
+        "warszawa",
+        "krakow",
+        "trojmiasto"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://lbncars.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "star-partner",
+      "name": "Star Partner",
+      "cities": [
+        "warszawa",
+        "trojmiasto"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://starpartner.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "natviol",
+      "name": "Natviol",
+      "cities": [
+        "warszawa",
+        "krakow",
+        "trojmiasto"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://natviol.com/",
+      "status": "draft"
+    },
+    {
+      "id": "km-partners",
+      "name": "KM Partners",
+      "cities": [
+        "warszawa"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://www.km-partners.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "select",
+      "name": "Select",
+      "cities": [
+        "trojmiasto"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://selectgda.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "saltexpress",
+      "name": "SaltExpress",
+      "cities": [
+        "warszawa",
+        "krakow",
+        "trojmiasto"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://saltexpress.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "auto-pilot",
+      "name": "Autopilot",
+      "cities": [
+        "warszawa"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://auto-pilot.pl/",
+      "status": "draft"
+    },
+    {
+      "id": "mastertaxi",
+      "name": "MasterTaxi",
+      "cities": [
+        "trojmiasto"
+      ],
+      "apps": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "www": "https://www.olx.pl/",
       "status": "draft"
     }
   ],
@@ -452,8 +740,9 @@
       "payoutFrequency": "weekly",
       "sourceUrl": "https://nova-partner.pl/praca-kierowca-taxi-warszawa/",
       "verifiedAt": "2026-11-21",
-      "notes": "'Dostęp do wszystkich aplikacji 60 zł / tydzień'. Wypłata w każdy wtorek.",
-      "noFeeIdleWeek": null
+      "notes": "'Dostęp do wszystkich aplikacji 60 zł / tydzień'. Wypłata w każdy wtorek. Aktualizacja 22.11.2026: strona główna nazywa 60 zł/tydz. 'opłatą zgłoszeniową'. Wynajem: Chevrolet Cruze 450, Prius II 550, Prius 30 650, Auris 750, Prius+ 800, Corolla 2020 850 zł/tydz.; kaucja równa tygodniowemu czynszowi. Lista miast niespójna: opis strony wymienia Gdańsk, treść strony nie.",
+      "noFeeIdleWeek": null,
+      "conflicting": true
     },
     {
       "id": "nova-rental",
@@ -479,8 +768,9 @@
       "payoutFrequency": "weekly",
       "sourceUrl": "https://nova-partner.pl/praca-kierowca-taxi-warszawa/",
       "verifiedAt": "2026-11-21",
-      "notes": "Wynajem 'od 450 zł/tydz.'. Na stronie głównej kaucje 550–850 zł zależnie od auta; kaucja dla auta za 450 zł nieznana.",
-      "noFeeIdleWeek": null
+      "notes": "Wynajem 'od 450 zł/tydz.'. Na stronie głównej kaucje 550–850 zł zależnie od auta; kaucja dla auta za 450 zł nieznana. Aktualizacja 22.11.2026: strona główna nazywa 60 zł/tydz. 'opłatą zgłoszeniową'. Wynajem: Chevrolet Cruze 450, Prius II 550, Prius 30 650, Auris 750, Prius+ 800, Corolla 2020 850 zł/tydz.; kaucja równa tygodniowemu czynszowi. Lista miast niespójna: opis strony wymienia Gdańsk, treść strony nie.",
+      "noFeeIdleWeek": null,
+      "conflicting": true
     },
     {
       "id": "cashpartner-own",
@@ -691,8 +981,9 @@
       "payoutFrequency": null,
       "sourceUrl": "https://flowapps.pl/praca/kierowca-bolt/krakow/",
       "verifiedAt": "2026-11-21",
-      "notes": "Strona krakowska: 'tylko 50 zł miesięcznie*' (przeliczone: 50 ÷ 4,33 = 11,54 zł/tydz.). Strona o Uberze tego partnera podaje '50 zł za rozliczenie' — możliwe, że tygodniowo. Sprzeczność do weryfikacji.",
-      "noFeeIdleWeek": null
+      "notes": "Strona krakowska: 'tylko 50 zł miesięcznie*' (przeliczone: 50 ÷ 4,33 = 11,54 zł/tydz.). Strona o Uberze tego partnera podaje '50 zł za rozliczenie' — możliwe, że tygodniowo. Sprzeczność do weryfikacji. Aktualizacja 22.11.2026: strona wynajmu (flowapps.pl/wynajem-samochodow) podaje 'jedną opłatę za rozliczenie pakietu aplikacji – tylko 50 zł' (bez okresu) oraz ceny wynajmu od 550 zł (Skoda Fabia IV), 700 zł (Corolla hybryda), 750 zł (Corolla hybryda + LPG) tygodniowo.",
+      "noFeeIdleWeek": null,
+      "conflicting": true
     },
     {
       "id": "flowapps-rental",
@@ -718,8 +1009,9 @@
       "payoutFrequency": null,
       "sourceUrl": "https://flowapps.pl/praca/kierowca-bolt/krakow/",
       "verifiedAt": "2026-11-21",
-      "notes": "Wynajem 'już od 530 zł tygodniowo'. Opłata jak w ofercie z własnym autem (do weryfikacji).",
-      "noFeeIdleWeek": null
+      "notes": "Wynajem 'już od 530 zł tygodniowo'. Opłata jak w ofercie z własnym autem (do weryfikacji). Aktualizacja 22.11.2026: strona wynajmu (flowapps.pl/wynajem-samochodow) podaje 'jedną opłatę za rozliczenie pakietu aplikacji – tylko 50 zł' (bez okresu) oraz ceny wynajmu od 550 zł (Skoda Fabia IV), 700 zł (Corolla hybryda), 750 zł (Corolla hybryda + LPG) tygodniowo.",
+      "noFeeIdleWeek": null,
+      "conflicting": true
     },
     {
       "id": "eres-split-shift",
@@ -752,12 +1044,12 @@
       "id": "eres-own",
       "partnerId": "eres-partner",
       "city": "krakow",
-      "settlementType": "fixed",
+      "settlementType": "percent",
       "weeklyFee": null,
       "feeQuotedAmount": null,
       "feeQuotedPeriod": null,
-      "percent": null,
-      "feeBase": null,
+      "percent": 0.03,
+      "feeBase": "turnover",
       "carType": "own",
       "fuelIncluded": false,
       "weeklyRent": null,
@@ -770,10 +1062,11 @@
       ],
       "deposit": null,
       "payoutFrequency": "weekly",
-      "sourceUrl": "https://eres-partner.pl/en/praca-bolt-krakow/",
-      "verifiedAt": "2026-11-21",
-      "notes": "Powyżej 3000 zł obrotu tygodniowo brak prowizji i opłaty stałej. Opłata poniżej 3000 zł nie podana — oferta niepełna. Model progowy wymaga rozszerzenia obliczeń.",
-      "noFeeIdleWeek": null
+      "sourceUrl": "https://eres-partner.pl/rozliczenia/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'Obsługa rozliczeń to jedna opłata 3% obrotu', 'Bez kwot stałych i progów', rozliczenie i wypłata co tydzień. Tak samo podaje uberkrakow.pl (MB TAXI sp. z o.o., rozliczenia przez ERES): '3%', '0 zł stałych opłat'. Sprzeczność: 21.11.2026 zapisano z innej strony ERES, że powyżej 3000 zł obrotu tygodniowo nie ma prowizji. Nie podano, czy 3% liczone od obrotu brutto, ani czy obejmuje tydzień bez jazdy.",
+      "noFeeIdleWeek": null,
+      "conflicting": true
     },
     {
       "id": "carsar-own",
@@ -959,9 +1252,1334 @@
       "deposit": null,
       "payoutFrequency": null,
       "sourceUrl": "https://3mdrivers.pl/",
-      "verifiedAt": "2026-11-21",
-      "notes": "Strona nie podaje cen — oferta niepełna.",
+      "verifiedAt": "2026-11-22",
+      "notes": "Strona nie podaje opłat ('Szczegóły przedstawiamy podczas wdrożenia'). Wynajem: tylko Toyota Corolla Hybrid + LPG, cena nie podana. Wypłaty co tydzień. Także na liście partnerów Ubera (Trójmiasto). Oferta niepełna.",
       "noFeeIdleWeek": null
+    },
+    {
+      "id": "eres-own-trojmiasto",
+      "partnerId": "eres-partner",
+      "city": "trojmiasto",
+      "settlementType": "percent",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": 0.03,
+      "feeBase": "turnover",
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://eres-partner.pl/gdynia/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Strona dla Gdyni: '3% obrotu', bez opłaty stałej, wypłaty co tydzień. Strona /rozliczenia/: 'w każdym mieście w Polsce'.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "flowapps-own-warszawa",
+      "partnerId": "flow-apps",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": 11.54,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "month",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": null,
+      "sourceUrl": "https://flowapps.pl/praca/kierowca-bolt/warszawa/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Strona warszawska (zm. 20.11.2026): 'Rozliczenie kilku aplikacji tylko 50zł!', 'tylko 50 zł miesięcznie*'. Strona wynajmu podaje '50 zł' za rozliczenie bez okresu. Sprzeczność okresu do weryfikacji.",
+      "noFeeIdleWeek": null,
+      "conflicting": true
+    },
+    {
+      "id": "flowapps-rental-warszawa",
+      "partnerId": "flow-apps",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": 11.54,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "month",
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 750,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": null,
+      "sourceUrl": "https://flowapps.pl/wynajem-samochodow/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Toyota Corolla hybryda + LPG 750 zł/tydz. (także Corolla bez LPG 700 zł, Skoda Fabia IV 550 zł). Strona warszawska podaje 'już od 530 zł tygodniowo', strona wynajmu najniżej 550 zł. Opłata za rozliczenie jak przy własnym aucie (50 zł/mies., sprzeczność okresu). Kaucja: kwota nie podana.",
+      "noFeeIdleWeek": null,
+      "conflicting": true
+    },
+    {
+      "id": "evelstar-own-warszawa",
+      "partnerId": "evelstar",
+      "city": "warszawa",
+      "settlementType": "mixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": 0.01,
+      "feeBase": "turnover",
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://evelstar.com/praca-taxi/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Strona: 'płacisz tylko 50 zł + 1% od obrotu brutto' za wszystkie aplikacje taxi; wypłaty co tydzień. Sprzeczność: regulamin (evelstar.com/docs/zasady_wspolpracy.pdf, §4.1) podaje dwie alternatywy: '50,00 zł za rozliczenie' albo '1% od obrotu brutto', bez wskazania, która obowiązuje. Regulamin: brak kosztów w okresie bez zleceń. Okres opłaty: 'za rozliczenie' (kierowca wybiera tydzień, miesiąc lub na żądanie); przyjęto tydzień. Kaucja przy wynajmie 850 zł. Partner na oficjalnej liście partnerów Ubera (uber.com/pl/pl/blog/lista-partnerow, stan na 8.10.2026) w: Warszawa, Kraków, Trójmiasto.",
+      "noFeeIdleWeek": true,
+      "conflicting": true
+    },
+    {
+      "id": "evelstar-own-krakow",
+      "partnerId": "evelstar",
+      "city": "krakow",
+      "settlementType": "mixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": 0.01,
+      "feeBase": "turnover",
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://evelstar.com/praca-taxi/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Strona: 'płacisz tylko 50 zł + 1% od obrotu brutto' za wszystkie aplikacje taxi; wypłaty co tydzień. Sprzeczność: regulamin (evelstar.com/docs/zasady_wspolpracy.pdf, §4.1) podaje dwie alternatywy: '50,00 zł za rozliczenie' albo '1% od obrotu brutto', bez wskazania, która obowiązuje. Regulamin: brak kosztów w okresie bez zleceń. Okres opłaty: 'za rozliczenie' (kierowca wybiera tydzień, miesiąc lub na żądanie); przyjęto tydzień. Kaucja przy wynajmie 850 zł. Partner na oficjalnej liście partnerów Ubera (uber.com/pl/pl/blog/lista-partnerow, stan na 8.10.2026) w: Warszawa, Kraków, Trójmiasto.",
+      "noFeeIdleWeek": true,
+      "conflicting": true
+    },
+    {
+      "id": "evelstar-own-trojmiasto",
+      "partnerId": "evelstar",
+      "city": "trojmiasto",
+      "settlementType": "mixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": 0.01,
+      "feeBase": "turnover",
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://evelstar.com/praca-taxi/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Strona: 'płacisz tylko 50 zł + 1% od obrotu brutto' za wszystkie aplikacje taxi; wypłaty co tydzień. Sprzeczność: regulamin (evelstar.com/docs/zasady_wspolpracy.pdf, §4.1) podaje dwie alternatywy: '50,00 zł za rozliczenie' albo '1% od obrotu brutto', bez wskazania, która obowiązuje. Regulamin: brak kosztów w okresie bez zleceń. Okres opłaty: 'za rozliczenie' (kierowca wybiera tydzień, miesiąc lub na żądanie); przyjęto tydzień. Kaucja przy wynajmie 850 zł. Partner na oficjalnej liście partnerów Ubera (uber.com/pl/pl/blog/lista-partnerow, stan na 8.10.2026) w: Warszawa, Kraków, Trójmiasto.",
+      "noFeeIdleWeek": true,
+      "conflicting": true
+    },
+    {
+      "id": "udriver-own-warszawa",
+      "partnerId": "udriver",
+      "city": "warszawa",
+      "settlementType": "mixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": 0.01,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://udriver.pl/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'50 zł + 1% Tylko tyle zapłacisz przy każdym rozliczeniu taxi. Niezależnie od tego, w ilu aplikacjach jeździsz.' Nie podano, od czego liczony jest 1% — oferta niepełna. Okres: 'za rozliczenie', wypłaty co tydzień; przyjęto tydzień. Strona: 'Płacisz tylko wtedy, kiedy zarabiasz' (niejednoznaczne, więc pole tygodnia bez jazdy pozostawiono puste). Partner na oficjalnej liście partnerów Ubera (uber.com/pl/pl/blog/lista-partnerow, stan na 8.10.2026) w: Warszawa, Kraków. Biuro w Gdańsku według strony partnera.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "udriver-own-krakow",
+      "partnerId": "udriver",
+      "city": "krakow",
+      "settlementType": "mixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": 0.01,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://udriver.pl/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'50 zł + 1% Tylko tyle zapłacisz przy każdym rozliczeniu taxi. Niezależnie od tego, w ilu aplikacjach jeździsz.' Nie podano, od czego liczony jest 1% — oferta niepełna. Okres: 'za rozliczenie', wypłaty co tydzień; przyjęto tydzień. Strona: 'Płacisz tylko wtedy, kiedy zarabiasz' (niejednoznaczne, więc pole tygodnia bez jazdy pozostawiono puste). Partner na oficjalnej liście partnerów Ubera (uber.com/pl/pl/blog/lista-partnerow, stan na 8.10.2026) w: Warszawa, Kraków. Biuro w Gdańsku według strony partnera.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "udriver-own-trojmiasto",
+      "partnerId": "udriver",
+      "city": "trojmiasto",
+      "settlementType": "mixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": 0.01,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://udriver.pl/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'50 zł + 1% Tylko tyle zapłacisz przy każdym rozliczeniu taxi. Niezależnie od tego, w ilu aplikacjach jeździsz.' Nie podano, od czego liczony jest 1% — oferta niepełna. Okres: 'za rozliczenie', wypłaty co tydzień; przyjęto tydzień. Strona: 'Płacisz tylko wtedy, kiedy zarabiasz' (niejednoznaczne, więc pole tygodnia bez jazdy pozostawiono puste). Partner na oficjalnej liście partnerów Ubera (uber.com/pl/pl/blog/lista-partnerow, stan na 8.10.2026) w: Warszawa, Kraków. Biuro w Gdańsku według strony partnera.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "mbpartner-own-warszawa",
+      "partnerId": "mb-partner",
+      "city": "warszawa",
+      "settlementType": "mixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": 0.01,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": null,
+      "sourceUrl": "https://dostawca-jedzenia.pl/partner-rozliczeniowy/lista-wybranych-partnerow-rozliczeniowych/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Kwota pochodzi ze strony zewnętrznej (zestawienie partnerów, część wpisów płatna): 'TAXI: 50 zł + 1%'. Strona partnera (mbpartners.pl/praca/uber) nie podaje opłat. Nie podano okresu ani podstawy 1% — przyjęto tydzień, oferta niepełna. Wypłaty: codziennie, co tydzień lub raz w miesiącu. Oddział trójmiejski działa jako Tkaczykowski (tkaczykowski.pl). Partner na liście Ubera w Krakowie.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "mbpartner-own-krakow",
+      "partnerId": "mb-partner",
+      "city": "krakow",
+      "settlementType": "mixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": 0.01,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": null,
+      "sourceUrl": "https://dostawca-jedzenia.pl/partner-rozliczeniowy/lista-wybranych-partnerow-rozliczeniowych/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Kwota pochodzi ze strony zewnętrznej (zestawienie partnerów, część wpisów płatna): 'TAXI: 50 zł + 1%'. Strona partnera (mbpartners.pl/praca/uber) nie podaje opłat. Nie podano okresu ani podstawy 1% — przyjęto tydzień, oferta niepełna. Wypłaty: codziennie, co tydzień lub raz w miesiącu. Oddział trójmiejski działa jako Tkaczykowski (tkaczykowski.pl). Partner na liście Ubera w Krakowie.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "mbpartner-own-trojmiasto",
+      "partnerId": "mb-partner",
+      "city": "trojmiasto",
+      "settlementType": "mixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": 0.01,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": null,
+      "sourceUrl": "https://dostawca-jedzenia.pl/partner-rozliczeniowy/lista-wybranych-partnerow-rozliczeniowych/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Kwota pochodzi ze strony zewnętrznej (zestawienie partnerów, część wpisów płatna): 'TAXI: 50 zł + 1%'. Strona partnera (mbpartners.pl/praca/uber) nie podaje opłat. Nie podano okresu ani podstawy 1% — przyjęto tydzień, oferta niepełna. Wypłaty: codziennie, co tydzień lub raz w miesiącu. Oddział trójmiejski działa jako Tkaczykowski (tkaczykowski.pl). Partner na liście Ubera w Krakowie.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "simplypartner-own",
+      "partnerId": "simply-partner",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": 49,
+      "feeQuotedAmount": 49,
+      "feeQuotedPeriod": "week",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://simplypartner.pl/cennik/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'Tylko 49 zł za rozliczenie wszystkich aplikacji!' 'Prowizję naliczamy tylko wtedy, gdy w danym tygodniu faktycznie wykonasz kursy'. Okres: za rozliczenie; przyjęto tydzień.",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "simplypartner-rental",
+      "partnerId": "simply-partner",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 750,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://simplypartner.pl/praca-bolt-warszawa",
+      "verifiedAt": "2026-11-22",
+      "notes": "Wynajem 'Toyota Corolla / Toyota Camry – bliżej 750–950 zł/tydz.'; podstawowe modele (Octavia, Prius 3) 450–650 zł/tydz. Przyjęto 750 zł. Paliwo po stronie kierowcy (karta paliwowa z rabatem). Strona nie mówi, czy opłata 49 zł obowiązuje przy wynajmie — oferta niepełna.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "greenpartners-own",
+      "partnerId": "green-partners",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": 40,
+      "feeQuotedAmount": 40,
+      "feeQuotedPeriod": "week",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://green-partners.pl/rozliczanie-aplikacje-taxi-warszawa/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'30 zł tygodniowo za 1 aplikację, 40 zł za 2 i więcej' (160 zł za 4 tygodnie), 'Bez procentu od obrotu'. Tu wariant 2+ aplikacji. Wypłaty co tydzień, gotówką w biurze albo przelewem. Firma: Green Group sp. z o.o. sp.k.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "btpartner-own-week-warszawa",
+      "partnerId": "btpartner",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://btpartner.pl/koszty/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Cennik: 'Tygodniowy' 50 zł / tydzień, 'Dwutygodniowy' 70 zł, 'Miesięczny' 100 zł. 'Jedna opłata za wszystkie aplikacje', 'Nie jeździsz — nie płacisz za rozliczenie'. Siedziba w Bydgoszczy; strona: 'Obsługujemy kierowców w całej Polsce' (mapa miast obejmuje Warszawę, Kraków, Gdańsk, Gdynię i Sopot).",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "btpartner-own-month-warszawa",
+      "partnerId": "btpartner",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": 23.08,
+      "feeQuotedAmount": 100,
+      "feeQuotedPeriod": "month",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "monthly",
+      "sourceUrl": "https://btpartner.pl/koszty/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Wariant miesięczny: 100 zł za miesiąc (rozliczenie i wypłata co miesiąc). Patrz wariant tygodniowy.",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "btpartner-own-week-krakow",
+      "partnerId": "btpartner",
+      "city": "krakow",
+      "settlementType": "fixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://btpartner.pl/koszty/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Cennik: 'Tygodniowy' 50 zł / tydzień, 'Dwutygodniowy' 70 zł, 'Miesięczny' 100 zł. 'Jedna opłata za wszystkie aplikacje', 'Nie jeździsz — nie płacisz za rozliczenie'. Siedziba w Bydgoszczy; strona: 'Obsługujemy kierowców w całej Polsce' (mapa miast obejmuje Warszawę, Kraków, Gdańsk, Gdynię i Sopot).",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "btpartner-own-month-krakow",
+      "partnerId": "btpartner",
+      "city": "krakow",
+      "settlementType": "fixed",
+      "weeklyFee": 23.08,
+      "feeQuotedAmount": 100,
+      "feeQuotedPeriod": "month",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "monthly",
+      "sourceUrl": "https://btpartner.pl/koszty/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Wariant miesięczny: 100 zł za miesiąc (rozliczenie i wypłata co miesiąc). Patrz wariant tygodniowy.",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "btpartner-own-week-trojmiasto",
+      "partnerId": "btpartner",
+      "city": "trojmiasto",
+      "settlementType": "fixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://btpartner.pl/koszty/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Cennik: 'Tygodniowy' 50 zł / tydzień, 'Dwutygodniowy' 70 zł, 'Miesięczny' 100 zł. 'Jedna opłata za wszystkie aplikacje', 'Nie jeździsz — nie płacisz za rozliczenie'. Siedziba w Bydgoszczy; strona: 'Obsługujemy kierowców w całej Polsce' (mapa miast obejmuje Warszawę, Kraków, Gdańsk, Gdynię i Sopot).",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "btpartner-own-month-trojmiasto",
+      "partnerId": "btpartner",
+      "city": "trojmiasto",
+      "settlementType": "fixed",
+      "weeklyFee": 23.08,
+      "feeQuotedAmount": 100,
+      "feeQuotedPeriod": "month",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "monthly",
+      "sourceUrl": "https://btpartner.pl/koszty/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Wariant miesięczny: 100 zł za miesiąc (rozliczenie i wypłata co miesiąc). Patrz wariant tygodniowy.",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "ramnext-own-warszawa",
+      "partnerId": "ramnext",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": 45,
+      "feeQuotedAmount": 45,
+      "feeQuotedPeriod": "week",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": null,
+      "sourceUrl": "https://www.ramnext.pl/najlepszy-partner-bolt-uber-freenow/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'Stała, niska prowizja – 45 zł za rozliczenie', 'Ramnext pobiera zawsze 45 zł tygodniowo', brak procentu od obrotu, 'Jeśli nie jeździsz, nie ponosisz żadnych kosztów'. Siedziba w Lublinie; obecność w tym mieście wynika tylko z menu strony (podstrony miast niesprawdzone).",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "ramnext-own-krakow",
+      "partnerId": "ramnext",
+      "city": "krakow",
+      "settlementType": "fixed",
+      "weeklyFee": 45,
+      "feeQuotedAmount": 45,
+      "feeQuotedPeriod": "week",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": null,
+      "sourceUrl": "https://www.ramnext.pl/najlepszy-partner-bolt-uber-freenow/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'Stała, niska prowizja – 45 zł za rozliczenie', 'Ramnext pobiera zawsze 45 zł tygodniowo', brak procentu od obrotu, 'Jeśli nie jeździsz, nie ponosisz żadnych kosztów'. Siedziba w Lublinie; obecność w tym mieście wynika tylko z menu strony (podstrony miast niesprawdzone).",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "ramnext-own-trojmiasto",
+      "partnerId": "ramnext",
+      "city": "trojmiasto",
+      "settlementType": "fixed",
+      "weeklyFee": 45,
+      "feeQuotedAmount": 45,
+      "feeQuotedPeriod": "week",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": null,
+      "sourceUrl": "https://www.ramnext.pl/najlepszy-partner-bolt-uber-freenow/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'Stała, niska prowizja – 45 zł za rozliczenie', 'Ramnext pobiera zawsze 45 zł tygodniowo', brak procentu od obrotu, 'Jeśli nie jeździsz, nie ponosisz żadnych kosztów'. Siedziba w Lublinie; obecność w tym mieście wynika tylko z menu strony (podstrony miast niesprawdzone).",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "departner-own",
+      "partnerId": "departner",
+      "city": "krakow",
+      "settlementType": "mixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": 0.01,
+      "feeBase": "turnover",
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://departner.pl/zmiana-partnera-uber-bolt/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'50 zł tygodniowo i 1% obrotu'; w pierwszym miesiącu bez opłaty 50 zł. Umowa miesięczna. Wypłaty co tydzień. Auto flotowe: 'do 55%' (współdzielone) lub 'do 65%' (na wyłączność) obrotu dla kierowcy, paliwo i serwis po stronie partnera, bez kaucji.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "hybgo-own",
+      "partnerId": "hybgo",
+      "city": "krakow",
+      "settlementType": "fixed",
+      "weeklyFee": 30,
+      "feeQuotedAmount": 30,
+      "feeQuotedPeriod": "week",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://hybgo.pl/rozliczenia/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'Trzy aplikacje' '30 zł', 'Cotygodniowe terminowe rozliczenia', 'Nie jeździsz = Nie płacisz!'. Okres opłaty nie podany wprost; przyjęto tydzień. Wynajem (Prius, Auris, Corolla z LPG) bez cen.",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "borspartner-own",
+      "partnerId": "bors-partner",
+      "city": "krakow",
+      "settlementType": "fixed",
+      "weeklyFee": 50,
+      "feeQuotedAmount": 50,
+      "feeQuotedPeriod": "week",
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://borspartner.pl/en/home/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Strona: 30 zł za rozliczenie jednej aplikacji, 50 zł za dwie i więcej, brak opłaty w tygodniu bez jazdy. Wartości odczytane z niepełnie pobranej strony — do weryfikacji. Okres: za rozliczenie, wypłaty co poniedziałek; przyjęto tydzień.",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "borspartner-rental-corolla",
+      "partnerId": "bors-partner",
+      "city": "krakow",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 800,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://borspartner.pl/en/taxi-rental-cracow/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Toyota Corolla (hybryda + LPG) 800 zł/tydz. Także Fabia 500, Honda Insight 550, Prius 600, Auris 700 zł/tydz. Strona wynajmu zm. 21.02.2025. Opłata za rozliczenie przy wynajmie nie podana — oferta niepełna.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "bonitocars-rental-corolla",
+      "partnerId": "bonitocars",
+      "city": "krakow",
+      "settlementType": "percent",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": 0.01,
+      "feeBase": "turnover",
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 750,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": null,
+      "sourceUrl": "https://bonitocars.pl/wynajem/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Toyota Corolla (2020–2026) na wyłączność '750 – 950 zł / tydz.' (przyjęto 750 zł), 'Prowizja 1% od obrotu brutto', 'rozliczenie w cenie najmu', paliwo po stronie kierowcy. Zmiennik 500 zł/tydz.; także Fabia 400, Yaris Cross 850, Camry 1200 zł/tydz. Model procentowy 'nawet 60/40'. Kaucja nie podana.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "lbncars-rental-corolla-warszawa",
+      "partnerId": "lbncars",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 800,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://lbncars.pl/praca-taxi-krakow/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Toyota Corolla 'od 590 zł*' / tydz., 800 zł bez bonusu flotowego (przyjęto 800 zł). Także C-HR od 850, Prius+ od 800, Auris od 500, Prius od 500, Fabia od 400 zł. 'Wszystkie modele są dostępne w każdym z 17 miast' (w tym Warszawa i Trójmiasto). Opłata za rozliczenie nie podana — oferta niepełna. Wypłaty w poniedziałek.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "lbncars-rental-corolla-krakow",
+      "partnerId": "lbncars",
+      "city": "krakow",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 800,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://lbncars.pl/praca-taxi-krakow/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Toyota Corolla 'od 590 zł*' / tydz., 800 zł bez bonusu flotowego (przyjęto 800 zł). Także C-HR od 850, Prius+ od 800, Auris od 500, Prius od 500, Fabia od 400 zł. 'Wszystkie modele są dostępne w każdym z 17 miast' (w tym Warszawa i Trójmiasto). Opłata za rozliczenie nie podana — oferta niepełna. Wypłaty w poniedziałek.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "lbncars-rental-corolla-trojmiasto",
+      "partnerId": "lbncars",
+      "city": "trojmiasto",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 800,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://lbncars.pl/praca-taxi-krakow/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Toyota Corolla 'od 590 zł*' / tydz., 800 zł bez bonusu flotowego (przyjęto 800 zł). Także C-HR od 850, Prius+ od 800, Auris od 500, Prius od 500, Fabia od 400 zł. 'Wszystkie modele są dostępne w każdym z 17 miast' (w tym Warszawa i Trójmiasto). Opłata za rozliczenie nie podana — oferta niepełna. Wypłaty w poniedziałek.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "starpartner-rental-corolla-warszawa",
+      "partnerId": "star-partner",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 800,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": null,
+      "sourceUrl": "https://starpartner.pl/en/rent-a-taxi/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Toyota Corolla 2021 (hybryda + LPG) 800 zł/tydz. (promocyjnie 400 zł). Także Corolla 2024 900 (promo 500), Prius+ 750, Prius 3 550, Fabia 350 zł/tydz. Miasta: Warszawa, Gdańsk, Gdynia, Sopot (FAQ). Opłata za rozliczenie nie podana — oferta niepełna.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "starpartner-rental-corolla-trojmiasto",
+      "partnerId": "star-partner",
+      "city": "trojmiasto",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 800,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": null,
+      "sourceUrl": "https://starpartner.pl/en/rent-a-taxi/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Toyota Corolla 2021 (hybryda + LPG) 800 zł/tydz. (promocyjnie 400 zł). Także Corolla 2024 900 (promo 500), Prius+ 750, Prius 3 550, Fabia 350 zł/tydz. Miasta: Warszawa, Gdańsk, Gdynia, Sopot (FAQ). Opłata za rozliczenie nie podana — oferta niepełna.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "natviol-rental-warszawa",
+      "partnerId": "natviol",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 550,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": 0,
+      "payoutFrequency": null,
+      "sourceUrl": "https://natviol.com/wynajem-samochodu-warszawa/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Wynajem 'już od ok. 550 zł / tydzień', bez kaucji, paliwo po stronie kierowcy, czynsz pobierany co wtorek. Model auta nie podany w tekście. Opłata za rozliczenie nie podana — oferta niepełna. Flota tylko w Warszawie, Trójmieście, Łodzi i Bydgoszczy; w Krakowie tylko rozliczenia (strona Bolt Kraków). Partner na oficjalnej liście partnerów Ubera (uber.com/pl/pl/blog/lista-partnerow, stan na 8.10.2026) w: Warszawa, Kraków, Trójmiasto.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "natviol-rental-trojmiasto",
+      "partnerId": "natviol",
+      "city": "trojmiasto",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 550,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": 0,
+      "payoutFrequency": null,
+      "sourceUrl": "https://natviol.com/wynajem-samochodu-trojmiasto/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Wynajem 'już od ok. 550 zł / tydzień', bez kaucji, paliwo po stronie kierowcy, czynsz pobierany co wtorek. Model auta nie podany w tekście. Opłata za rozliczenie nie podana — oferta niepełna. Flota tylko w Warszawie, Trójmieście, Łodzi i Bydgoszczy; w Krakowie tylko rozliczenia (strona Bolt Kraków). Partner na oficjalnej liście partnerów Ubera (uber.com/pl/pl/blog/lista-partnerow, stan na 8.10.2026) w: Warszawa, Kraków, Trójmiasto.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "kmpartners-rental-corolla",
+      "partnerId": "km-partners",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 550,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": 0,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://www.km-partners.pl/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Toyota Corolla / C-HR 'Już od 550 zł / tydzień'. Także Auris od 450, Prius od 350, Ibiza/Fabia od 250 zł. 'Nie pobieramy kaucji', paliwo po stronie kierowcy, czynsz potrącany z tygodniowego utargu. Opłata za rozliczenie nie podana — oferta niepełna.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "select-rental-corolla",
+      "partnerId": "select",
+      "city": "trojmiasto",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": false,
+      "weeklyRent": 850,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://selectgda.pl/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Toyota Corolla 'od 850 zł / tydzień'. Także Fabia kombi od 600, Yaris od 750, Yaris Cross od 850 zł. Przelew raz w tygodniu, '14 dni urlopu' od czynszu. Strona nieaktualizowana od listopada 2024 — ceny mogą być nieaktualne. Opłata za rozliczenie nie podana — oferta niepełna. Na liście partnerów Ubera (Trójmiasto).",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "saltexpress-own-warszawa",
+      "partnerId": "saltexpress",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://saltexpress.pl/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'Jedna opłata za wszystkie aplikacje' — kwota nie podana, oferta niepełna. 'Nie jeździłeś w danym tygodniu - nie ponosisz kosztów'. Wypłaty w każdą środę. Strona z 2024 r.",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "saltexpress-own-krakow",
+      "partnerId": "saltexpress",
+      "city": "krakow",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://saltexpress.pl/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'Jedna opłata za wszystkie aplikacje' — kwota nie podana, oferta niepełna. 'Nie jeździłeś w danym tygodniu - nie ponosisz kosztów'. Wypłaty w każdą środę. Strona z 2024 r.",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "saltexpress-own-trojmiasto",
+      "partnerId": "saltexpress",
+      "city": "trojmiasto",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://saltexpress.pl/",
+      "verifiedAt": "2026-11-22",
+      "notes": "'Jedna opłata za wszystkie aplikacje' — kwota nie podana, oferta niepełna. 'Nie jeździłeś w danym tygodniu - nie ponosisz kosztów'. Wypłaty w każdą środę. Strona z 2024 r.",
+      "noFeeIdleWeek": true
+    },
+    {
+      "id": "autopilot-own",
+      "partnerId": "auto-pilot",
+      "city": "warszawa",
+      "settlementType": "fixed",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "own",
+      "fuelIncluded": false,
+      "weeklyRent": null,
+      "driverShare": null,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt",
+        "freenow"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://auto-pilot.pl/en/prices/",
+      "verifiedAt": "2026-11-22",
+      "notes": "Cennik: 'With your car (3 apps)' 100 zł, 'With our car (3 apps)' 75 zł. Okres opłaty nie podany — oferta niepełna. Wypłaty co tydzień.",
+      "noFeeIdleWeek": null
+    },
+    {
+      "id": "mastertaxi-split",
+      "partnerId": "mastertaxi",
+      "city": "trojmiasto",
+      "settlementType": "split",
+      "weeklyFee": null,
+      "feeQuotedAmount": null,
+      "feeQuotedPeriod": null,
+      "percent": null,
+      "feeBase": null,
+      "carType": "rental",
+      "fuelIncluded": true,
+      "weeklyRent": 0,
+      "driverShare": 0.6,
+      "rideVatRate": null,
+      "appsIncluded": [
+        "uber",
+        "bolt"
+      ],
+      "deposit": null,
+      "payoutFrequency": "weekly",
+      "sourceUrl": "https://www.olx.pl/oferta/praca/praca-kierowca-student-do-60-dla-ciebie-7000zl-uber-bolt-3miasto-3000-zl-welcome-bonus-350-zl-zwrot-badania-wyplaty-codziennie-start-24h-CID4-ID1avEMk.html",
+      "verifiedAt": "2026-11-22",
+      "notes": "Ogłoszenie OLX z 21.11.2026 (Master Investment Sp. z o.o.): 'Do 60% netto od obrotu dla Ciebie', nowa Toyota Corolla, 'Pokrywamy wszystkie koszty (paliwo, serwis, ubezpieczenie)'. 60% to wartość maksymalna; nie podano, od czego liczony jest obrót netto. Oferta skierowana do studentów. Welcome bonus 3000 zł.",
+      "noFeeIdleWeek": null
+    }
+  ],
+  "partnersWithoutTerms": [
+    {
+      "name": "Eternis",
+      "cities": [
+        "warszawa",
+        "krakow",
+        "trojmiasto"
+      ],
+      "www": "https://eternis.pl/",
+      "sourceUrl": "https://eternis.pl/",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Na liście partnerów Ubera w trzech miastach. Brak opłaty za rozliczenie. Ceny wynajmu 'od' 150 zł (Corolla), 250 zł (Tesla), 500 zł (Camry) tygodniowo — prawdopodobnie promocyjne, do weryfikacji. Wypłaty codziennie, co tydzień lub co miesiąc."
+    },
+    {
+      "name": "Avalon Logistics (Avalon Partner)",
+      "cities": [
+        "warszawa",
+        "krakow",
+        "trojmiasto"
+      ],
+      "www": "https://avalon-logistics.pl/",
+      "sourceUrl": "https://avalon-logistics.pl/",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Na liście partnerów Ubera (Trójmiasto). Biura w Warszawie, Krakowie i Gdańsku. Baner 'Promocja 0 zł za rozliczenie' bez warunków; brak cen wynajmu."
+    },
+    {
+      "name": "Feniks",
+      "cities": [
+        "warszawa"
+      ],
+      "www": null,
+      "sourceUrl": "https://www.uber.com/pl/pl/blog/lista-partnerow/",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Na liście partnerów Ubera (Warszawa), bez strony internetowej (kontakt e-mail: domena feniks-rent.pl). Wynajem aut taxi."
+    },
+    {
+      "name": "U-rent",
+      "cities": [
+        "warszawa"
+      ],
+      "www": null,
+      "sourceUrl": "https://www.uber.com/pl/pl/blog/lista-partnerow/",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Na liście partnerów Ubera (Warszawa), bez strony internetowej."
+    },
+    {
+      "name": "Drago Partner",
+      "cities": [
+        "warszawa"
+      ],
+      "www": "https://dragopartner.pl/",
+      "sourceUrl": "https://dragopartner.pl/",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Strona nie wczytała treści (tylko opis: partner flotowy w Warszawie, wynajem aut)."
+    },
+    {
+      "name": "Abu Taxi Partner",
+      "cities": [
+        "warszawa"
+      ],
+      "www": "http://abupartner.pl/",
+      "sourceUrl": "http://abupartner.pl/partner-freenow-uber-bolt-2025/",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Raszyn (okolice Warszawy). Brak cen na sprawdzonej stronie."
+    },
+    {
+      "name": "Dastia",
+      "cities": [
+        "warszawa"
+      ],
+      "www": "https://dastia.pl/",
+      "sourceUrl": "https://dastia.pl/",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Siedziba w Warszawie; 'najniższa tygodniowa prowizja' bez kwoty; miasta działania nie podane."
+    },
+    {
+      "name": "OTAM",
+      "cities": [
+        "krakow"
+      ],
+      "www": "https://otamtaxi.com/",
+      "sourceUrl": "https://otamtaxi.com/",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Partner flotowy w Krakowie; wypłaty co tydzień; brak cen."
+    },
+    {
+      "name": "W&P (Work & Personnel)",
+      "cities": [
+        "krakow"
+      ],
+      "www": "https://wp-partners.pl/",
+      "sourceUrl": "https://wp-partners.pl/",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "'Od 150 zł za 3 aplikacji' bez okresu; twierdzi, że 'Kierowca jest zwolniony z płacenia 8% VAT' (do weryfikacji). Wypłaty w poniedziałek."
+    },
+    {
+      "name": "Leon Partner",
+      "cities": [
+        "krakow"
+      ],
+      "www": "https://leonpartner.pl/",
+      "sourceUrl": "https://leonpartner.pl/",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Strona nie dała się pobrać."
+    },
+    {
+      "name": "Rush Partner",
+      "cities": [
+        "krakow"
+      ],
+      "www": null,
+      "sourceUrl": "https://www.olx.pl/oferta/praca/rush-partner-kierowca-uber-bolt-free-now-zarobki-do-75-premie-CID4-ID14IbRH.html",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Ogłoszenie OLX (Kraków Podgórze, 'zarobki do 75%'); treści nie udało się odczytać."
+    },
+    {
+      "name": "NB PRO",
+      "cities": [
+        "trojmiasto"
+      ],
+      "www": "https://nbpro.pl/",
+      "sourceUrl": "https://nbpro.pl/praca/gdansk/",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Tylko Gdańsk (Gdynia i Sopot to osobne licencje, nieobsługiwane). 'Pierwszy miesiąc rozliczeń gratis', kwoty nie podane. Brak wynajmu w Gdańsku. Wypłata we wtorek."
+    },
+    {
+      "name": "Tkaczykowski (oddział MB Partner)",
+      "cities": [
+        "trojmiasto"
+      ],
+      "www": "https://tkaczykowski.pl/",
+      "sourceUrl": "https://tkaczykowski.pl/",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Trójmiejski oddział MB Partner; wynajem aut taxi bez cen."
+    },
+    {
+      "name": "BB Driver",
+      "cities": [
+        "trojmiasto"
+      ],
+      "www": null,
+      "sourceUrl": "https://www.pracuj.pl/praca/kierowca-taxi-bolt-uber-freenow-gdansk,oferta,1004857882",
+      "verifiedAt": "2026-11-22",
+      "status": "draft",
+      "notes": "Ogłoszenie (wygasłe): auto na wyłączność, wypłaty co tydzień, karta flotowa; brak cen."
     }
   ]
 }
