@@ -209,7 +209,10 @@ Oznaczenia:
   5. commit,
   6. krótki raport do projektu.
 
-## 12. Dane startowe (21.11.2026)
-- Plik seed-offers.json: 16 partnerów, 26 ofert (Warszawa 11, Kraków 9, Trójmiasto 6), status „draft” do ręcznej weryfikacji.
-- 10 ofert niepełnych: brak podstawy naliczania procentu, brak cen albo brak obrotu na godzinę dla Trójmiasta.
+## 12. Dane startowe (aktualizacja 22.11.2026)
+- Plik seed-offers.json: 35 partnerów z co najmniej jedną ofertą, 69 ofert (Warszawa 28, Kraków 22, Trójmiasto 19), status „draft” do ręcznej weryfikacji.
+- Dodatkowo 14 partnerów bez publicznych cen (`partnersWithoutTerms`), poza rankingiem.
+- 26 ofert niepełnych (brak kwoty, okresu, podstawy procentu albo opłaty przy wynajmie). Trójmiasto nadal nie ma domyślnego obrotu na godzinę.
+- 10 ofert oznaczonych `conflicting: true`: źródła podają sprzeczne warunki, opis w polu `notes`.
+- Źródła wyszukiwania: oficjalna lista partnerów Ubera, strony partnerów, ogłoszenia (OLX, Pracuj.pl), zestawienia branżowe. Bolt i FreeNow nie publikują listy partnerów.
 - Do rozszerzenia obliczeń: model progowy (np. brak opłat powyżej 3000 zł obrotu tygodniowo).
