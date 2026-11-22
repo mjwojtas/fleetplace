@@ -198,6 +198,22 @@ export function Results({ offers, partners, assumptions, dataDate, answers, onAn
               </p>
             </details>
           </div>
+          <details className="text-sm">
+            <summary className="cursor-pointer font-medium text-burgundy-700 underline underline-offset-4 dark:text-burgundy-400">
+              {COPY.earningsFactors.title}
+            </summary>
+            <div className="mt-2 rounded-lg bg-zinc-100 p-3 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+              <ul className="flex list-disc flex-col gap-1 pl-5">
+                {COPY.earningsFactors.items.map(([label, text]) => (
+                  <li key={label}>
+                    <strong className="font-semibold">{label}:</strong> {text}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2">{COPY.earningsFactors.closing}</p>
+            </div>
+          </details>
+
           {verdict && (
             <p className="rounded-xl bg-burgundy-50 px-4 py-3 text-base font-medium leading-snug text-burgundy-950 dark:bg-burgundy-950 dark:text-burgundy-50">
               {verdict}

@@ -12,6 +12,20 @@ export const COPY = {
     body:
       "Odpowiedz na 5 krótkich pytań. Porównamy oferty partnerów w Twoim mieście i pokażemy, ile zarobisz albo ile musisz jeździć. Nie pytamy o imię, telefon ani e-mail.",
     start: "Zaczynamy",
+    disclaimerTitle: "Pokażemy szacunek, nie obietnicę.",
+    disclaimer:
+      "Twój zarobek zależy przede wszystkim od tego, ile pasażerowie zapłacą Ci za godzinę jazdy (miasto, pory i dni jazdy, ruch), oraz od kosztów: prowizji aplikacji, opłat partnera, auta i paliwa. Kwoty traktuj jako rząd wielkości.",
+  },
+  earningsFactors: {
+    title: "Od czego zależy Twój zarobek?",
+    items: [
+      ["Obrót na godzinę", "miasto, pory i dni jazdy (wieczory, weekendy, wydarzenia), pogoda, Twoje doświadczenie i to, ile kursów przyjmujesz."],
+      ["Liczba godzin", "które faktycznie przejeździsz."],
+      ["Koszty", "prowizja aplikacji, VAT od przejazdów, opłaty partnera, wynajem auta, paliwo (LPG czy benzyna, spalanie Twojego auta)."],
+      ["Bonusy i napiwki", "mogą podnieść zarobek, ale ich nie wliczamy."],
+      ["Podatek i ZUS", "nie odejmujemy, bo zależą od Twojej umowy i sytuacji."],
+    ] as const,
+    closing: "Dlatego pokazujemy przedział, a nie dokładną kwotę. Warunki zawsze potwierdź u partnera.",
   },
   back: "Wstecz",
   next: "Dalej",

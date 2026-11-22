@@ -67,6 +67,10 @@ export function DriverFlow({ offers, partners, assumptions, dataDate }: DriverFl
         <div className="flex flex-col gap-6 pt-6 sm:pt-12">
           <h1 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{COPY.intro.title}</h1>
           <p className="text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">{COPY.intro.body}</p>
+          <aside className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 text-sm leading-relaxed text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">
+            <strong className="font-semibold text-zinc-900 dark:text-zinc-100">{COPY.intro.disclaimerTitle}</strong>{" "}
+            {COPY.intro.disclaimer}
+          </aside>
           <PrimaryButton onClick={() => setStep(1)}>{COPY.intro.start}</PrimaryButton>
         </div>
       </Screen>
